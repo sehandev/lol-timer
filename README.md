@@ -1,2 +1,2 @@
 # lol-timer
-League Of Legend skill and spell timer in go
+League Of Legend skill and spell timer in electron
