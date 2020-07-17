@@ -1,6 +1,6 @@
 @font-face {
     font-family: Maplestory;
-    src: url("./resources/font/Maplestory_OTF_Light.otf") format("opentype");
+    src: url("../font/Maplestory_Light.ttf");
 }
 
 body {

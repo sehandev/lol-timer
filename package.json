@@ -10,13 +10,18 @@
   "repository": "https://github.com/sehandev/lol-timer",
   "author": "sehandev",
   "devDependencies": {
-    "@fortawesome/fontawesome-free": "^5.14.0",
-    "bootstrap": "^4.5.0",
     "electron": "^9.1.0",
-    "electron-builder": "^22.7.0",
-    "jquery": "^3.5.1",
-    "popper.js": "^1.16.1"
+    "electron-builder": "^22.7.0"
   },
+  "files": [
+    "*.html",
+    "*.css",
+    "*.js",
+    "resources",
+    "node_modules/@fortawesome/",
+    "node_modules/bootstrap/",
+    "node_modules/popper.js/"
+  ],
   "build": {
     "productName": "zileanTimer",
     "appId": "com.sehandev.zileanTimer",
@@ -26,5 +31,11 @@
         "zip"
       ]
     }
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.14.0",
+    "bootstrap": "^4.5.0",
+    "jquery": "^3.5.1",
+    "popper.js": "^1.16.1"
   }
 }
