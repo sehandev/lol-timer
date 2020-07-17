@@ -7,7 +7,22 @@ body {
     font-family: 'Maplestory', sans-serif;
 }
 
+#drag-top {
+    -webkit-app-region: drag;
+    overflow: hidden;
+}
+
+button {
+    -webkit-app-region: no-drag;
+}
+
 #name-search-btn {
     color: white;
     background-color: #d13639;
+    font-size: 16px;
+}
+
+.horizontal-line {
+  border: 2px solid #d13639;
+  border-radius: 3px;
 }

@@ -17,37 +17,68 @@
   <link rel="stylesheet" href="./static/css/index.css">
 </head>
 
-<body>
+<body class="user-select-none">
   <div class="container">
 
-    <div class="py-4"></div>
-
-    <div class="text-right">
-      <button type="button" id="close-btn" class="btn btn-secondary"><i class="fas fa-times"></i></button>
+    <div id="drag-top" class="py-4">
+      <h1 id="index-title" class="float-left">질리언 타이머</h1>
+      <button type="button" id="close-btn" class="btn btn-secondary float-right"><i class="fas fa-times"></i></button>
     </div>
 
-    <h1>질리언 타이머</h1>
-
-    <form>
-      <div class="form-group">
-        <label for="summoner-name">Summoner Name</label>
+    <form class="row float-none" action="spell.html">
+      <div class="col-10 form-group align-middle">
         <input type="text" class="form-control" id="summoner-name" placeholder="소환사 이름을 입력해주세요">
       </div>
-      <!-- <div class="form-group form-check">
-        <input type="checkbox" class="form-check-input" id="summoner-check">
-        <label class="form-check-label" for="summoner-check">Check me out</label>
-      </div> -->
-      <button id="name-search-btn" type="submit" class="btn">검색</button>
+      <div class="col-2">
+        <button id="name-search-btn" type="submit" class="btn">검색</button>
+      </div>
     </form>
 
-    We are using Node.js <span id="node-version"></span>,
-    Chromium <span id="chrome-version"></span>,
-    and Electron <span id="electron-version"></span>.
+    <hr class="horizontal-line">
+
+    <p>최근 기록</p>
+
+    <div class="row">
+      <div class="col-6 my-1">
+        <button type="button" class="btn btn-outline-danger btn-block">세한A</button>
+      </div>
+      <div class="col-6 my-1">
+        <button type="button" class="btn btn-outline-danger btn-block">D세한D</button>
+      </div>
+      <div class="col-6 my-1">
+        <button type="button" class="btn btn-outline-danger btn-block">이름여덟글자제한</button>
+      </div>
+      <div class="col-6 my-1">
+        <button type="button" class="btn btn-outline-danger btn-block">이름여덟글자제한</button>
+      </div>
+      <div class="col-6 my-1">
+        <button type="button" class="btn btn-outline-danger btn-block">이름여덟글자제한</button>
+      </div>
+      <div class="col-6 my-1">
+        <button type="button" class="btn btn-outline-danger btn-block">이름여덟글자제한</button>
+      </div>
+      <div class="col-6 my-1">
+        <button type="button" class="btn btn-outline-danger btn-block">이름여덟글자제한</button>
+      </div>
+      <div class="col-6 my-1">
+        <button type="button" class="btn btn-outline-danger btn-block">이름여덟글자제한</button>
+      </div>
+      <div class="col-6 my-1">
+        <button type="button" class="btn btn-outline-danger btn-block">이름여덟글자제한</button>
+      </div>
+      <div class="col-6 my-1">
+        <button type="button" class="btn btn-outline-danger btn-block">이름여덟글자제한</button>
+      </div>
+      <div class="col-6 my-1">
+        <button type="button" class="btn btn-outline-danger btn-block">이름여덟글자제한</button>
+      </div>
+    </div>
+
 
   </div>
 
   <!-- You can also require other files to run in this process -->
-  <script src="./renderer.js"></script>
+  <script src="./static/js/renderer.js"></script>
 </body>
 
 </html>
