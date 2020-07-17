@@ -1,0 +1,13 @@
+@font-face {
+    font-family: Maplestory;
+    src: url("./resources/font/Maplestory_OTF_Light.otf") format("opentype");
+}
+
+body {
+    font-family: 'Maplestory', sans-serif;
+}
+
+#name-search-btn {
+    color: white;
+    background-color: #d13639;
+}
