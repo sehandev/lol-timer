@@ -1,23 +1,14 @@
 {
-  "name": "electron-quick-start",
-  "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "name": "lol_timer",
+  "version": "0.0.1",
+  "description": "League of Legends skill & spell timer",
   "main": "main.js",
   "scripts": {
-    "run": "electron .",
-    "pack": "electron-builder --dir",
-    "dist": "electron-builder"
+    "start": "electron .",
+    "build": "electron-builder --win --x64"
   },
-  "repository": "https://github.com/electron/electron-quick-start",
-  "keywords": [
-    "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo"
-  ],
-  "author": "GitHub",
-  "license": "CC0-1.0",
+  "repository": "https://github.com/sehandev/lol-timer",
+  "author": "sehandev",
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.14.0",
     "bootstrap": "^4.5.0",
@@ -27,9 +18,9 @@
     "popper.js": "^1.16.1"
   },
   "build": {
-    "productName": "testApp",
-    "appId": "com.electron_test.app",
-    "asar": true,
+    "productName": "zileanTimer",
+    "appId": "com.sehandev.zileanTimer",
+    "asar": false,
     "win": {
       "target": [
         "zip"
