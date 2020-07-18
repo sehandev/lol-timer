@@ -6,9 +6,31 @@
 .btn-spell {
     width: 30px;
     height: 30px;
+    padding: 0px;
 }
 
 .spell-group {
+    height: 70px;
     display: flex;
     flex-direction: column;
+    padding: 0;
+    margin: 0;
+}
+
+.btn-cool {
+    width: 70px;
+    height: 70px;
+    border-radius: 35px;
+    text-align: center;
+}
+
+.final-cool {
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 30px;
+    text-align: center;
+
+    color: #dc3545;
+    border: 1px solid #dc3545;
 }
