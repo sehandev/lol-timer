@@ -1,0 +1,14 @@
+.btn-champion-img {
+    width: 70px;
+    height: 70px;
+}
+
+.btn-spell {
+    width: 30px;
+    height: 30px;
+}
+
+.spell-group {
+    display: flex;
+    flex-direction: column;
+}
