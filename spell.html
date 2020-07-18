@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+  <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+
+  <title>Zilean Timer</title>
+
+  <!-- external css -->
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="node_modules\@fortawesome\fontawesome-free\css\all.min.css">
+
+  <!-- custom css -->
+  <link rel="stylesheet" href="./static/css/common.css">
+  <link rel="stylesheet" href="./static/css/spell.css">
+</head>
+
+<body class="user-select-none">
+  <div class="container">
+
+    <div id="drag-top" class="overflow-hidden py-4">
+      <h1 id="index-title" class="float-left">질리언 타이머</h1>
+      <button type="button" id="close-btn" class="btn btn-secondary float-right"><i class="fas fa-times"></i></button>
+    </div>
+
+    <p>소환사 : <span id="summoner-name">세한</span></p>
+
+    <div class="row my-3">
+      <div class="col">
+        <button type="button" id="champion-btn-1" class="btn btn-outline-danger btn-champion-img">챔피언</button>
+      </div>
+      <div class="col">
+        <ul class="spell-group">
+          <li class="list-group-item">
+            <button type="button" id="spellD-btn-1" class="btn btn-outline-danger btn-spell">D</button>
+          </li>
+          <li class="list-group-item">
+            <button type="button" id="spellF-btn-1" class="btn btn-outline-danger btn-spell">F</button>
+          </li>
+        </ul>
+      </div>
+      <div class="col">
+        
+      </div>
+      <div class="col">
+        
+      </div>
+      <div class="col">
+        
+      </div>
+    </div>
+
+
+  </div>
+
+  <!-- You can also require other files to run in this process -->
+  <script src="./static/js/renderer.js"></script>
+</body>
+
+</html>
