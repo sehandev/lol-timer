@@ -16,6 +16,9 @@ function createWindow() {
     frame: false
   })
 
+  // Set window position
+  mainWindow.setPosition(100, 100)
+
   // and load the index.html of the app.
   mainWindow.loadFile('index.html')
 
