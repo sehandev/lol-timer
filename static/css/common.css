@@ -19,3 +19,7 @@ button {
   border: 2px solid #d13639;
   border-radius: 3px;
 }
+
+.d-webkit-box {
+    display: -webkit-box;
+}
