@@ -28,32 +28,45 @@
 
     <p>소환사 : <span id="summoner-name">세한</span></p>
 
-    <div class="row my-3">
+    <div class="row my-3 w-100 mx-auto">
 
-      <div class="col my-auto d-webkit-box">
-        
-          <!-- 챔피언 사진 + 궁극기 타이머 -->
-          <button type="button" id="champion-btn-1" class="btn btn-outline-danger btn-champion-img">챔피언 궁</button>
+      <div class="col-3 my-auto d-webkit-box">
 
-          <!-- 스펠 D & F 타이머 -->
-          <ul class="spell-group">
-            <li class="my-auto d-block spell-li">
-              <button type="button" id="spellD-btn-1" class="btn btn-outline-danger btn-spell">D</button>
-            </li>
-            <li class="my-auto d-block spell-li">
-              <button type="button" id="spellF-btn-1" class="btn btn-outline-danger btn-spell">F</button>
-            </li>
-          </ul>
+        <!-- 챔피언 사진 + 궁극기 타이머 -->
+        <button type="button" id="champion-btn-1" class="btn btn-outline-danger btn-champion-img">챔피언 궁</button>
+
+        <!-- 스펠 D & F 타이머 -->
+        <ul class="spell-group">
+          <li class="my-auto d-block spell-li">
+            <button type="button" id="spellD-btn-1" class="btn btn-outline-danger btn-spell">D</button>
+          </li>
+          <li class="my-auto d-block spell-li">
+            <button type="button" id="spellF-btn-1" class="btn btn-outline-danger btn-spell">F</button>
+          </li>
+        </ul>
 
       </div>
 
       <!-- 룬 -->
-      <div class="col my-auto">
+      <div class="col-3 my-auto">
 
+        <div class="row rune-group mx-auto">
+          <!-- 궁극의 사냥꾼 -->
+          <img class="active-rune mx-auto my-1" src="./static/img/rune-궁극의사냥꾼.png">
+          <!-- 깨달음 -->
+          <img class="deactive-rune mx-auto my-1" src="./static/img/rune-깨달음.png">
+        </div>
+
+        <div class="row rune-group mx-auto">
+          <!-- 봉인 풀린 주문서 -->
+          <img class="deactive-rune mx-auto my-1" src="./static/img/rune-봉인풀린주문서.png">
+          <!-- 우주적 통찰력 -->
+          <img class="active-rune mx-auto my-1" src="./static/img/rune-우주적통찰력.png">
+        </div>
       </div>
 
       <!-- 재사용대기시간 수정 -->
-      <div class="col my-auto">
+      <div class="col-3 my-auto">
         <button type="button" class="btn btn-outline-danger btn-fix-cool">-5</button>
         <button type="button" class="btn btn-outline-danger btn-fix-cool">-10</button>
         <div class="fix-cool">
@@ -64,7 +77,7 @@
       </div>
 
       <!-- 최종 재사용대기시간 -->
-      <div class="col my-auto">
+      <div class="col-3 my-auto">
         <div class="final-cool">
           <span id="final-cool">30</span>%
         </div>
