@@ -48,40 +48,47 @@
       </div>
 
       <!-- 룬 -->
-      <div class="col-3 my-auto">
+      <div class="col-4 my-auto">
 
         <div class="row rune-group mx-auto">
           <!-- 궁극의 사냥꾼 -->
-          <img class="active-rune mx-auto my-1" src="./static/img/rune-궁극의사냥꾼.png">
+          <img class="rune-circle mx-auto my-1" src="./static/img/rune-궁극의사냥꾼.png">
           <!-- 깨달음 -->
-          <img class="deactive-rune mx-auto my-1" src="./static/img/rune-깨달음.png">
+          <img class="rune-circle mx-auto my-1 disabled-rune" src="./static/img/rune-깨달음.png">
         </div>
 
         <div class="row rune-group mx-auto">
           <!-- 봉인 풀린 주문서 -->
-          <img class="deactive-rune mx-auto my-1" src="./static/img/rune-봉인풀린주문서.png">
+          <img class="rune-circle mx-auto my-1 disabled-rune" src="./static/img/rune-봉인풀린주문서.png">
           <!-- 우주적 통찰력 -->
-          <img class="active-rune mx-auto my-1" src="./static/img/rune-우주적통찰력.png">
+          <img class="rune-circle mx-auto my-1" src="./static/img/rune-우주적통찰력.png">
+          <!-- 공격 재사용대기시간 -->
+          <img class="rune-circle mx-auto my-1 disabled-rune" src="./static/img/rune-공격.png">
         </div>
       </div>
 
       <!-- 재사용대기시간 수정 -->
       <div class="col-3 my-auto">
-        <button type="button" class="btn btn-outline-danger btn-fix-cool">-5</button>
-        <button type="button" class="btn btn-outline-danger btn-fix-cool">-10</button>
+        <button type="button" class="btn btn-outline-danger btn-fix-cool">+5</button>
+        <button type="button" class="btn btn-outline-danger btn-fix-cool">+10</button>
         <div class="fix-cool">
           <span id="fix-cool">20</span>%
         </div>
-        <button type="button" class="btn btn-outline-danger btn-fix-cool">+5</button>
-        <button type="button" class="btn btn-outline-danger btn-fix-cool">+10</button>
+        <button type="button" class="btn btn-outline-danger btn-fix-cool">-5</button>
+        <button type="button" class="btn btn-outline-danger btn-fix-cool">-10</button>
       </div>
 
       <!-- 최종 재사용대기시간 -->
-      <div class="col-3 my-auto">
-        <div class="final-cool">
-          <span id="final-cool">30</span>%
+      <div class="col-2 my-auto">
+        <div class="final-cool my-auto">
+          <span id="final-ult-cool">0</span>%
+        </div>
+
+        <div class="final-cool my-auto">
+          <span id="final-spell-cool">0</span>%
         </div>
       </div>
+    
 
     </div>
 
@@ -89,6 +96,7 @@
 
   <!-- You can also require other files to run in this process -->
   <script src="./static/js/renderer.js"></script>
+  <script src="./static/js/spell.js"></script>
 </body>
 
 </html>
