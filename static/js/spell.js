@@ -16,6 +16,15 @@ let fix_cool = 0 // 사용자 설정 재사용대기시간
 let final_ult_cool = 0 // 최종 궁극기 재사용대기시간
 let final_spell_cool = 0 // 최종 spell 재사용대기시간
 
+// check_disabled_rune : rune이 비활성화 상태라면 class를 추가해서 css 추가
+function check_disabled_rune() {
+    rune_map.forEach( (value, key) => {
+        if (!value) {
+            document.getElementById('rune-' + key).classList.add('disabled-rune');
+        }
+    })
+}
+
 // calculate_rune_cool : rune_cool (rune으로 인한 재사용대기시간) 계산
 function calculate_rune_cool() {
     if (rune_map.get('궁극의사냥꾼')) {
@@ -60,6 +69,7 @@ function test() {
 }
 
 test()
+check_disabled_rune()
 calculate_rune_cool()
 set_fix_cooldown()
 set_final_cooldown()
