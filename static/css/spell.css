@@ -80,3 +80,7 @@
     color: blue;
     border: 1px solid blue;
 }
+
+.btn:focus {
+    box-shadow: 0 0 0 0;
+} 
