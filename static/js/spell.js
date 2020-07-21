@@ -37,7 +37,7 @@ document.getElementById('fix-btn-s10').onclick = () => {
 function check_disabled_rune() {
     rune_map.forEach( (value, key) => {
         if (!value) {
-            document.getElementById('rune-' + key).classList.add('disabled-rune');
+            document.getElementById('rune-' + key + '-' + 1).classList.add('disabled-rune');
         }
     })
 }

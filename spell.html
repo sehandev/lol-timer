@@ -4,8 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-  <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+  <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'"> -->
+  <!-- <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'"> -->
 
   <title>Zilean Timer</title>
 
@@ -34,9 +34,8 @@
 
         <!-- 챔피언 사진 + 궁극기 타이머 -->
         <button type="button" id="champion-btn-1" class="btn btn-outline-danger btn-champion">
-          <img class="champion-img" src="./static/img/ult-pyke.png">
-          <span class="ult-timer">00:00</span>
-          <!-- <div id="champion-img-1"></div> -->
+          <img id="champion-img-1" class="champion-img" src="./static/img/champion/Pyke.png">
+          <span id="ult-timer-1" class="ult-timer">00:00</span>
         </button>
 
         <!-- 스펠 D & F 타이머 -->
@@ -58,18 +57,18 @@
 
         <div class="row rune-group mx-auto">
           <!-- 궁극의 사냥꾼 -->
-          <img id="rune-궁극의사냥꾼" class="rune-circle mx-auto my-1" src="./static/img/rune/rune-궁극의사냥꾼.png">
+          <img id="rune-궁극의사냥꾼-1" class="rune-circle mx-auto my-1" src="./static/img/rune/rune-궁극의사냥꾼.png">
           <!-- 깨달음 -->
-          <img id="rune-깨달음" class="rune-circle mx-auto my-1" src="./static/img/rune/rune-깨달음.png">
+          <img id="rune-깨달음-1" class="rune-circle mx-auto my-1" src="./static/img/rune/rune-깨달음.png">
         </div>
 
         <div class="row rune-group mx-auto">
           <!-- 봉인 풀린 주문서 -->
-          <img id="rune-봉인풀린주문서" class="rune-circle mx-auto my-1" src="./static/img/rune/rune-봉인풀린주문서.png">
+          <img id="rune-봉인풀린주문서-1" class="rune-circle mx-auto my-1" src="./static/img/rune/rune-봉인풀린주문서.png">
           <!-- 우주적 통찰력 -->
-          <img id="rune-우주적통찰력" class="rune-circle mx-auto my-1" src="./static/img/rune/rune-우주적통찰력.png">
+          <img id="rune-우주적통찰력-1" class="rune-circle mx-auto my-1" src="./static/img/rune/rune-우주적통찰력.png">
           <!-- 공격 재사용대기시간 -->
-          <img id="rune-공격" class="rune-circle mx-auto my-1" src="./static/img/rune/rune-공격.png">
+          <img id="rune-공격-1" class="rune-circle mx-auto my-1" src="./static/img/rune/rune-공격.png">
         </div>
       </div>
 
@@ -103,6 +102,7 @@
   <!-- You can also require other files to run in this process -->
   <script src="./static/js/renderer.js"></script>
   <script src="./static/js/spell.js"></script>
+  <script src="./static/js/ajax.js"></script>
 </body>
 
 </html>
