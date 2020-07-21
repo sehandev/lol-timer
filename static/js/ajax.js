@@ -1,11 +1,7 @@
-const axios = require('axios').default
+const { ipcRenderer } = require('electron');
 
-function loadXMLDoc() {
-    axios.get("https://ddragon.leagueoflegends.com/api/versions.json").then(function (response) {
-        console.log(response.data)
-    }).catch(function (error) {
-        console.log(error)
-    })
-}
+ipcRenderer.send('request-mainprocess-action');
 
-loadXMLDoc()
+ipcRenderer.on('mainprocess-response', (event, arg) => {
+    console.log(arg);
+});

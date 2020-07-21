@@ -36,6 +36,7 @@
     "@fortawesome/fontawesome-free": "^5.14.0",
     "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
+    "https": "^1.0.0",
     "jquery": "^3.5.1",
     "popper.js": "^1.16.1"
   }

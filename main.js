@@ -1,5 +1,5 @@
 // Modules to control application life and create native browser window
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
 
 function createWindow() {
@@ -7,7 +7,7 @@ function createWindow() {
   const mainWindow = new BrowserWindow({
     width: 1366,
     // width: 577,
-    height: 600,
+    height: 700,
     resizable: false,
     webPreferences: {
       preload: path.join(__dirname, 'static/js/preload.js'),
@@ -23,7 +23,7 @@ function createWindow() {
   mainWindow.loadFile('index.html')
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools()
 }
 
 // This method will be called when Electron has finished
@@ -48,3 +48,20 @@ app.on('window-all-closed', function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+const https = require('https')
+const axios = require('axios').default
+
+const agent = new https.Agent({
+  rejectUnauthorized: false
+})
+
+ipcMain.on('request-mainprocess-action', (event, arg) => {
+
+  axios.get("https://127.0.0.1:2999/liveclientdata/allgamedata", { httpsAgent: agent }).then(function (response) {
+    event.sender.send('mainprocess-response', response.data)
+  }).catch(function (error) {
+    console.log(error)
+  })
+
+})
