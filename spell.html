@@ -30,25 +30,31 @@
 
     <div class="row my-3 w-100 mx-auto">
 
-      <div class="col-3 my-auto d-webkit-box">
+      <div class="col-4 my-auto d-webkit-box">
 
         <!-- 챔피언 사진 + 궁극기 타이머 -->
-        <button type="button" id="champion-btn-1" class="btn btn-outline-danger btn-champion-img">챔피언 궁</button>
+        <button type="button" id="champion-btn-1" class="btn btn-outline-danger btn-champion">
+          <img class="champion-img" src="./static/img/ult-pyke.png">
+          <span class="ult-timer">00:00</span>
+          <!-- <div id="champion-img-1"></div> -->
+        </button>
 
         <!-- 스펠 D & F 타이머 -->
         <ul class="spell-group">
           <li class="my-auto d-block spell-li">
             <button type="button" id="spellD-btn-1" class="btn btn-outline-danger btn-spell">D</button>
+            <span id="spellD-timer-1" class="spell-timer">00:00</span>
           </li>
           <li class="my-auto d-block spell-li">
             <button type="button" id="spellF-btn-1" class="btn btn-outline-danger btn-spell">F</button>
+            <span id="spellF-timer-1" class="spell-timer">00:00</span>
           </li>
         </ul>
 
       </div>
 
       <!-- 룬 -->
-      <div class="col-4 my-auto">
+      <div class="col-3 my-auto">
 
         <div class="row rune-group mx-auto">
           <!-- 궁극의 사냥꾼 -->
@@ -88,7 +94,7 @@
           <span id="final-spell-cool">0</span>%
         </div>
       </div>
-    
+
 
     </div>
 
