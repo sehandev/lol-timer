@@ -7,6 +7,8 @@ import (
 	"os"
 )
 
+const championFilePath string = "../static/json/champion.json"
+
 type champion struct {
 	Type    string      `json:"type"`
 	Format  string      `json:"format"`
@@ -15,23 +17,25 @@ type champion struct {
 }
 
 func readJSON() (championNameArr []string) {
-	// Open our jsonFile
-	jsonFile, err := os.Open("../static/json/champion.json")
+
+	// 파일 열기
+	jsonFile, err := os.Open(championFilePath)
 	checkError(err)
 	defer jsonFile.Close()
 
+	// 파일 읽기
 	byteValue, err := ioutil.ReadAll(jsonFile)
 	checkError(err)
 
+	// json 분석
 	var champ champion
 	err = json.Unmarshal(byteValue, &champ)
 	checkError(err)
 
+	// champion 이름인 key 구하기
 	for key := range champ.Data.(map[string]interface{}) {
 		championNameArr = append(championNameArr, key)
 	}
-
-	fmt.Println(championNameArr)
 
 	return
 }

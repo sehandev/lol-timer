@@ -10,8 +10,8 @@ import (
 )
 
 const (
-	championDirPath    string = "../static/img/champion/"
-	ddragonChampionURL string = "http://ddragon.leagueoflegends.com/cdn/10.14.1/img/champion/"
+	championDirPath    string = "../static/img/champion/" // 사진 저장할 directory
+	ddragonChampionURL string = "http://ddragon.leagueoflegends.com/cdn/10.14.1/img/champion/" // champion URL
 )
 
 func checkError(err error) {
@@ -21,25 +21,24 @@ func checkError(err error) {
 }
 
 func main() {
+	// TODO : https://ddragon.leagueoflegends.com/api/versions.json 에서 최신 버전 찾기
 
 	championNameArr := readJSON()
 
 	for _, championName := range championNameArr {
+		// championName : champion 영어 이름
 
 		fullURL := ddragonChampionURL + championName + ".png"
 		client := httpClient()
 
-		// Build fileName from fullPath
+		// URL로부터 fileName 분리
 		fileName := buildFileName(fullURL)
 
-		// Create blank file
+		// championDirPath에 file 만들기
 		file := createFile(fileName)
 
-		// Put content on file
-		fileSize := putFile(file, client, fullURL)
-
-		fmt.Printf("Just Downloaded a file %s with size %d\n", fileName, fileSize)
-
+		// 만든 file에 사진 저장
+		putFile(file, client, fullURL)
 	}
 }
 
@@ -73,14 +72,12 @@ func createFile(fileName string) (file *os.File) {
 	return
 }
 
-func putFile(file *os.File, client *http.Client, fullURL string) (size int64) {
+func putFile(file *os.File, client *http.Client, fullURL string) {
 	resp, err := client.Get(fullURL)
 	checkError(err)
 	defer resp.Body.Close()
 
-	size, err = io.Copy(file, resp.Body)
+	_, err = io.Copy(file, resp.Body)
 	defer file.Close()
 	checkError(err)
-
-	return
 }
