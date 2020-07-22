@@ -38,6 +38,8 @@ function check_disabled_rune() {
     rune_map.forEach( (value, key) => {
         if (!value) {
             document.getElementById('rune-' + key + '-' + 1).classList.add('disabled-rune');
+        } else {
+            document.getElementById('rune-' + key + '-' + 1).classList.remove('disabled-rune');
         }
     })
 }
@@ -112,8 +114,8 @@ function set_final_spell_cooldown() {
 
 
 function test() {
-    rune_map.set('깨달음', true)
-    rune_map.set('우주적통찰력', true)
+    // rune_map.set('깨달음', true)
+    // rune_map.set('우주적통찰력', true)
 }
 
 test()

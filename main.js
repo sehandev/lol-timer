@@ -51,17 +51,36 @@ app.on('window-all-closed', function () {
 
 const https = require('https')
 const axios = require('axios').default
+const api_key = 'RGAPI-465eb062-6660-4a3e-89fe-eb12523706a3'
 
 const agent = new https.Agent({
   rejectUnauthorized: false
 })
 
-ipcMain.on('request-mainprocess-action', (event, arg) => {
+// 실행 중인 LOL Client의 live data 요청
+ipcMain.on('request-live', (event) => {
 
-  axios.get("https://127.0.0.1:2999/liveclientdata/allgamedata", { httpsAgent: agent }).then(function (response) {
-    event.sender.send('mainprocess-response', response.data)
+  let live_url = 'https://127.0.0.1:2999/liveclientdata/allgamedata'
+
+  axios.get(live_url, { httpsAgent: agent }).then(function (response) {
+    event.sender.send('response-live', response.data, true)
   }).catch(function (error) {
     console.log(error)
+    event.sender.send('response-live', '게임을 실행하고 버튼을 다시 눌러주세요.', false)
+  })
+
+})
+
+// 해당 게임의 match 정보 요청
+ipcMain.on('request-match', (event, summoner_id) => {
+
+  let match_url = 'https://kr.api.riotgames.com/lol/spectator/v4/active-games/by-summoner/' + summoner_id + '?api_key=' + api_key
+
+  axios.get(match_url, { httpsAgent: agent }).then(function (response) {
+    event.sender.send('response-match', response.data, true)
+  }).catch(function (error) {
+    console.log(error)
+    event.sender.send('response-match', '게임을 진행 중이지 않습니다.', false)
   })
 
 })
