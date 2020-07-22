@@ -29,9 +29,12 @@ ipcRenderer.on('response-match', (event, data, is_ok) => {
         let enemy_array = participants.filter(element => element.teamId != team_id)
         enemy_array.forEach(element => {
             console.log(element)
+            
             let champion_id = element.championId
+
             let perk_array = element.perks.perkIds
             check_perk(perk_array)
+
             let spell1_id = element.spell1Id
             let spell2_id = element.spell2Id
         })

@@ -23,7 +23,7 @@ func checkError(err error) {
 func main() {
 	// TODO : https://ddragon.leagueoflegends.com/api/versions.json 에서 최신 버전 찾기
 
-	championNameArr := readJSON()
+	championNameArr, championNameIDMap := readJSON()
 
 	for _, championName := range championNameArr {
 		// championName : champion 영어 이름

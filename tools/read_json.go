@@ -16,7 +16,8 @@ type champion struct {
 	Data    interface{} `json:"data"`
 }
 
-func readJSON() (championNameArr []string) {
+func readJSON() (championNameArr []string, championNameIDMap map[int]string) {
+	championNameIDMap = make(map[int]string)
 
 	// 파일 열기
 	jsonFile, err := os.Open(championFilePath)
@@ -33,8 +34,9 @@ func readJSON() (championNameArr []string) {
 	checkError(err)
 
 	// champion 이름인 key 구하기
-	for key := range champ.Data.(map[string]interface{}) {
+	for key, value := range champ.Data.(map[string]interface{}) {
 		championNameArr = append(championNameArr, key)
+		championNameIDMap[value.key] = key
 	}
 
 	return
