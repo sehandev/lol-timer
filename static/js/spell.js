@@ -45,20 +45,25 @@ function check_disabled_rune() {
 // calculate_rune_cool : rune_cool (rune으로 인한 재사용대기시간) 계산
 function calculate_rune_cool() {
     if (rune_map.get('궁극의사냥꾼')) {
+        // ID : 8106
         rune_cool += 5
     }
     if (rune_map.get('깨달음')) {
+        // ID : 8210
         rune_cool += 10
     }
     if (rune_map.get('봉인풀린주문서')) {
+        // ID : 8360
         // TODO : 봉인풀린주문서 rune의 효과 조사 필요
         final_spell_cool += 0
     }
     if (rune_map.get('우주적통찰력')) {
+        // ID : 8347
         rune_cool += 5
         final_spell_cool += 5
     }
     if (rune_map.get('공격')) {
+        // ID : 5007
         // TODO : 원래는 level에 따라서 증가하지만 시간으로 대체
         rune_cool += 0
     }
