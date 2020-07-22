@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"io"
 	"net/http"
 	"net/url"
@@ -10,7 +9,7 @@ import (
 )
 
 const (
-	championDirPath    string = "../static/img/champion/" // 사진 저장할 directory
+	championDirPath    string = "../static/img/champion/"                                      // 사진 저장할 directory
 	ddragonChampionURL string = "http://ddragon.leagueoflegends.com/cdn/10.14.1/img/champion/" // champion URL
 )
 
@@ -40,6 +39,8 @@ func main() {
 		// 만든 file에 사진 저장
 		putFile(file, client, fullURL)
 	}
+
+	writeChampionIDFile(championNameIDMap)
 }
 
 func httpClient() *http.Client {

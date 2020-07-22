@@ -2,9 +2,9 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"os"
+	"strconv"
 )
 
 const championFilePath string = "../static/json/champion.json"
@@ -36,7 +36,9 @@ func readJSON() (championNameArr []string, championNameIDMap map[int]string) {
 	// champion 이름인 key 구하기
 	for key, value := range champ.Data.(map[string]interface{}) {
 		championNameArr = append(championNameArr, key)
-		championNameIDMap[value.key] = key
+		id, err := strconv.Atoi(value.(map[string]interface{})["key"].(string))
+		checkError(err)
+		championNameIDMap[id] = key
 	}
 
 	return
