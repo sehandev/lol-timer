@@ -12,6 +12,11 @@ function axios_match() {
     ipcRenderer.send('request-match', summoner_id)
 }
 
+function axios_championID() {
+    ipcRenderer.send('request-championID')
+}
+
+
 ipcRenderer.on('response-live', (event, data, is_ok) => {
     if (is_ok) {
         console.log(data)
@@ -29,7 +34,7 @@ ipcRenderer.on('response-match', (event, data, is_ok) => {
         let enemy_array = participants.filter(element => element.teamId != team_id)
         enemy_array.forEach(element => {
             console.log(element)
-            
+
             let champion_id = element.championId
 
             let perk_array = element.perks.perkIds
@@ -43,6 +48,10 @@ ipcRenderer.on('response-match', (event, data, is_ok) => {
         // error
         console.log(data)
     }
+})
+
+ipcRenderer.on('response-championID', (event, data) => {
+    console.log(data)
 })
 
 let rune_array = {
@@ -64,7 +73,7 @@ function check_perk(perk_array) {
     })
     check_disabled_rune()
 
-    
+
     // TEST
     console.log(rune_map)
     rune_map.set('궁극의사냥꾼', false)
@@ -77,6 +86,7 @@ function check_perk(perk_array) {
 function test() {
     // axios_live()
     axios_match()
+    axios_championID()
 }
 
 test()
