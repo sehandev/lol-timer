@@ -64,8 +64,8 @@ ipcMain.on('request-live', (event) => {
 
   axios.get(live_url, { httpsAgent: agent }).then(function (response) {
     event.sender.send('response-live', response.data, true)
-  }).catch(function (error) {
-    console.log(error)
+  }).catch(function (err) {
+    console.log(err)
     event.sender.send('response-live', '게임을 실행하고 버튼을 다시 눌러주세요.', false)
   })
 
@@ -76,11 +76,39 @@ ipcMain.on('request-match', (event, summoner_id) => {
 
   let match_url = 'https://kr.api.riotgames.com/lol/spectator/v4/active-games/by-summoner/' + summoner_id + '?api_key=' + api_key
 
-  axios.get(match_url, { httpsAgent: agent }).then(function (response) {
+  axios.get(match_url, { httpsAgent: agent }).then(response => {
     event.sender.send('response-match', response.data, true)
-  }).catch(function (error) {
-    console.log(error)
+  }).catch( err => {
+    console.log(err)
     event.sender.send('response-match', '게임을 진행 중이지 않습니다.', false)
   })
 
+})
+
+const fs = require('fs')
+
+let id_name_array = []
+const id_name_file_path = './static/etc/champion_id.txt'
+
+fs.readFile(id_name_file_path, 'utf8', (err, data) => {
+  id_name_array = data.split('\r\n')
+  console.log(id_name_array)
+
+  for (let index = 0; index < id_name_array.length; index++) {
+    let element = id_name_array[index].split(' ')
+    id_name_array[index] = [Number(element[0]), element[1]]
+    // console.log(typeof(id_name_array[index][0]))
+  }
+
+  id_name_array.sort((a, b) => a[0] - b[0])
+
+  var file = fs.createWriteStream(id_name_file_path + '1')
+
+  file.on('err', err => { /* err handling */ })
+  
+  id_name_array.forEach( element => {
+    file.write(element[0] + ' ' + element[1] + '\n')
+  })
+  
+  file.end()
 })
