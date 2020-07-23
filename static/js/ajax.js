@@ -40,8 +40,7 @@ ipcRenderer.on('response-match', (_, data, is_ok) => {
         let enemy_array = participants.filter(element => element.teamId != team_id)
         for (let i = 0; i < enemy_array.length; i++) {
 
-            let champion_id = enemy_array[i].championId
-            let champion_name = champion_id_map[champion_id]
+            let champion_name = champion_id_map[enemy_array[i].championId]
             set_champion_img(i, champion_name)
 
             let perk_array = enemy_array[i].perks.perkIds
@@ -51,7 +50,6 @@ ipcRenderer.on('response-match', (_, data, is_ok) => {
             let spell2_id = enemy_array[i].spell2Id
             
         }
-
     } else {
         // error
         console.log(data)
