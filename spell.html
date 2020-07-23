@@ -28,6 +28,7 @@
 
     <p>소환사 : <span id="summoner-name">세한</span></p>
 
+    <!-- 소환사 1 -->
     <div class="row my-3 w-100 mx-auto">
 
       <div class="col-4 my-auto d-webkit-box">
@@ -69,6 +70,282 @@
           <img id="rune-우주적통찰력-1" class="rune-circle mx-auto my-1" src="./static/img/rune/rune-우주적통찰력.png">
           <!-- 공격 재사용대기시간 -->
           <img id="rune-공격-1" class="rune-circle mx-auto my-1" src="./static/img/rune/rune-공격.png">
+        </div>
+      </div>
+
+      <!-- 재사용대기시간 수정 -->
+      <div class="col-3 my-auto">
+        <button id="fix-btn-p5" type="button" class="btn btn-outline-danger btn-fix-cool">+5</button>
+        <button id="fix-btn-p10" type="button" class="btn btn-outline-danger btn-fix-cool">+10</button>
+        <div class="fix-cool">
+          <span id="fix-cool">20</span>%
+        </div>
+        <button id="fix-btn-s5" type="button" class="btn btn-outline-danger btn-fix-cool">-5</button>
+        <button id="fix-btn-s10" type="button" class="btn btn-outline-danger btn-fix-cool">-10</button>
+      </div>
+
+      <!-- 최종 재사용대기시간 -->
+      <div class="col-2 my-auto">
+        <div class="final-cool my-auto">
+          <span id="final-ult-cool">0</span>%
+        </div>
+
+        <div class="final-cool my-auto">
+          <span id="final-spell-cool">0</span>%
+        </div>
+      </div>
+
+    </div>
+    
+    <!-- 소환사 2 -->
+    <div class="row my-3 w-100 mx-auto">
+
+      <div class="col-4 my-auto d-webkit-box">
+
+        <!-- 챔피언 사진 + 궁극기 타이머 -->
+        <button type="button" id="champion-btn-2" class="btn btn-outline-danger btn-champion">
+          <img id="champion-img-2" class="champion-img" src="./static/img/champion/Pyke.png">
+          <span id="ult-timer-2" class="ult-timer">00:00</span>
+        </button>
+
+        <!-- 스펠 D & F 타이머 -->
+        <ul class="spell-group">
+          <li class="my-auto d-block spell-li">
+            <button type="button" id="spellD-btn-2" class="btn btn-outline-danger btn-spell">D</button>
+            <span id="spellD-timer-2" class="spell-timer">00:00</span>
+          </li>
+          <li class="my-auto d-block spell-li">
+            <button type="button" id="spellF-btn-2" class="btn btn-outline-danger btn-spell">F</button>
+            <span id="spellF-timer-2" class="spell-timer">00:00</span>
+          </li>
+        </ul>
+
+      </div>
+
+      <!-- 룬 -->
+      <div class="col-3 my-auto">
+
+        <div class="row rune-group mx-auto">
+          <!-- 궁극의 사냥꾼 -->
+          <img id="rune-궁극의사냥꾼-2" class="rune-circle mx-auto my-1" src="./static/img/rune/rune-궁극의사냥꾼.png">
+          <!-- 깨달음 -->
+          <img id="rune-깨달음-2" class="rune-circle mx-auto my-1" src="./static/img/rune/rune-깨달음.png">
+        </div>
+
+        <div class="row rune-group mx-auto">
+          <!-- 봉인 풀린 주문서 -->
+          <img id="rune-봉인풀린주문서-2" class="rune-circle mx-auto my-1" src="./static/img/rune/rune-봉인풀린주문서.png">
+          <!-- 우주적 통찰력 -->
+          <img id="rune-우주적통찰력-2" class="rune-circle mx-auto my-1" src="./static/img/rune/rune-우주적통찰력.png">
+          <!-- 공격 재사용대기시간 -->
+          <img id="rune-공격-2" class="rune-circle mx-auto my-1" src="./static/img/rune/rune-공격.png">
+        </div>
+      </div>
+
+      <!-- 재사용대기시간 수정 -->
+      <div class="col-3 my-auto">
+        <button id="fix-btn-p5" type="button" class="btn btn-outline-danger btn-fix-cool">+5</button>
+        <button id="fix-btn-p10" type="button" class="btn btn-outline-danger btn-fix-cool">+10</button>
+        <div class="fix-cool">
+          <span id="fix-cool">20</span>%
+        </div>
+        <button id="fix-btn-s5" type="button" class="btn btn-outline-danger btn-fix-cool">-5</button>
+        <button id="fix-btn-s10" type="button" class="btn btn-outline-danger btn-fix-cool">-10</button>
+      </div>
+
+      <!-- 최종 재사용대기시간 -->
+      <div class="col-2 my-auto">
+        <div class="final-cool my-auto">
+          <span id="final-ult-cool">0</span>%
+        </div>
+
+        <div class="final-cool my-auto">
+          <span id="final-spell-cool">0</span>%
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 소환사 3 -->
+    <div class="row my-3 w-100 mx-auto">
+
+      <div class="col-4 my-auto d-webkit-box">
+
+        <!-- 챔피언 사진 + 궁극기 타이머 -->
+        <button type="button" id="champion-btn-3" class="btn btn-outline-danger btn-champion">
+          <img id="champion-img-3" class="champion-img" src="./static/img/champion/Pyke.png">
+          <span id="ult-timer-3" class="ult-timer">00:00</span>
+        </button>
+
+        <!-- 스펠 D & F 타이머 -->
+        <ul class="spell-group">
+          <li class="my-auto d-block spell-li">
+            <button type="button" id="spellD-btn-3" class="btn btn-outline-danger btn-spell">D</button>
+            <span id="spellD-timer-3" class="spell-timer">00:00</span>
+          </li>
+          <li class="my-auto d-block spell-li">
+            <button type="button" id="spellF-btn-3" class="btn btn-outline-danger btn-spell">F</button>
+            <span id="spellF-timer-3" class="spell-timer">00:00</span>
+          </li>
+        </ul>
+
+      </div>
+
+      <!-- 룬 -->
+      <div class="col-3 my-auto">
+
+        <div class="row rune-group mx-auto">
+          <!-- 궁극의 사냥꾼 -->
+          <img id="rune-궁극의사냥꾼-3" class="rune-circle mx-auto my-1" src="./static/img/rune/rune-궁극의사냥꾼.png">
+          <!-- 깨달음 -->
+          <img id="rune-깨달음-3" class="rune-circle mx-auto my-1" src="./static/img/rune/rune-깨달음.png">
+        </div>
+
+        <div class="row rune-group mx-auto">
+          <!-- 봉인 풀린 주문서 -->
+          <img id="rune-봉인풀린주문서-3" class="rune-circle mx-auto my-1" src="./static/img/rune/rune-봉인풀린주문서.png">
+          <!-- 우주적 통찰력 -->
+          <img id="rune-우주적통찰력-3" class="rune-circle mx-auto my-1" src="./static/img/rune/rune-우주적통찰력.png">
+          <!-- 공격 재사용대기시간 -->
+          <img id="rune-공격-3" class="rune-circle mx-auto my-1" src="./static/img/rune/rune-공격.png">
+        </div>
+      </div>
+
+      <!-- 재사용대기시간 수정 -->
+      <div class="col-3 my-auto">
+        <button id="fix-btn-p5" type="button" class="btn btn-outline-danger btn-fix-cool">+5</button>
+        <button id="fix-btn-p10" type="button" class="btn btn-outline-danger btn-fix-cool">+10</button>
+        <div class="fix-cool">
+          <span id="fix-cool">20</span>%
+        </div>
+        <button id="fix-btn-s5" type="button" class="btn btn-outline-danger btn-fix-cool">-5</button>
+        <button id="fix-btn-s10" type="button" class="btn btn-outline-danger btn-fix-cool">-10</button>
+      </div>
+
+      <!-- 최종 재사용대기시간 -->
+      <div class="col-2 my-auto">
+        <div class="final-cool my-auto">
+          <span id="final-ult-cool">0</span>%
+        </div>
+
+        <div class="final-cool my-auto">
+          <span id="final-spell-cool">0</span>%
+        </div>
+      </div>
+
+    </div>
+    
+    <!-- 소환사 4 -->
+    <div class="row my-3 w-100 mx-auto">
+
+      <div class="col-4 my-auto d-webkit-box">
+
+        <!-- 챔피언 사진 + 궁극기 타이머 -->
+        <button type="button" id="champion-btn-4" class="btn btn-outline-danger btn-champion">
+          <img id="champion-img-4" class="champion-img" src="./static/img/champion/Pyke.png">
+          <span id="ult-timer-4" class="ult-timer">00:00</span>
+        </button>
+
+        <!-- 스펠 D & F 타이머 -->
+        <ul class="spell-group">
+          <li class="my-auto d-block spell-li">
+            <button type="button" id="spellD-btn-4" class="btn btn-outline-danger btn-spell">D</button>
+            <span id="spellD-timer-4" class="spell-timer">00:00</span>
+          </li>
+          <li class="my-auto d-block spell-li">
+            <button type="button" id="spellF-btn-4" class="btn btn-outline-danger btn-spell">F</button>
+            <span id="spellF-timer-4" class="spell-timer">00:00</span>
+          </li>
+        </ul>
+
+      </div>
+
+      <!-- 룬 -->
+      <div class="col-3 my-auto">
+
+        <div class="row rune-group mx-auto">
+          <!-- 궁극의 사냥꾼 -->
+          <img id="rune-궁극의사냥꾼-4" class="rune-circle mx-auto my-1" src="./static/img/rune/rune-궁극의사냥꾼.png">
+          <!-- 깨달음 -->
+          <img id="rune-깨달음-4" class="rune-circle mx-auto my-1" src="./static/img/rune/rune-깨달음.png">
+        </div>
+
+        <div class="row rune-group mx-auto">
+          <!-- 봉인 풀린 주문서 -->
+          <img id="rune-봉인풀린주문서-4" class="rune-circle mx-auto my-1" src="./static/img/rune/rune-봉인풀린주문서.png">
+          <!-- 우주적 통찰력 -->
+          <img id="rune-우주적통찰력-4" class="rune-circle mx-auto my-1" src="./static/img/rune/rune-우주적통찰력.png">
+          <!-- 공격 재사용대기시간 -->
+          <img id="rune-공격-4" class="rune-circle mx-auto my-1" src="./static/img/rune/rune-공격.png">
+        </div>
+      </div>
+
+      <!-- 재사용대기시간 수정 -->
+      <div class="col-3 my-auto">
+        <button id="fix-btn-p5" type="button" class="btn btn-outline-danger btn-fix-cool">+5</button>
+        <button id="fix-btn-p10" type="button" class="btn btn-outline-danger btn-fix-cool">+10</button>
+        <div class="fix-cool">
+          <span id="fix-cool">20</span>%
+        </div>
+        <button id="fix-btn-s5" type="button" class="btn btn-outline-danger btn-fix-cool">-5</button>
+        <button id="fix-btn-s10" type="button" class="btn btn-outline-danger btn-fix-cool">-10</button>
+      </div>
+
+      <!-- 최종 재사용대기시간 -->
+      <div class="col-2 my-auto">
+        <div class="final-cool my-auto">
+          <span id="final-ult-cool">0</span>%
+        </div>
+
+        <div class="final-cool my-auto">
+          <span id="final-spell-cool">0</span>%
+        </div>
+      </div>
+
+    </div>
+    
+    <!-- 소환사 5 -->
+    <div class="row my-3 w-100 mx-auto">
+
+      <div class="col-4 my-auto d-webkit-box">
+
+        <!-- 챔피언 사진 + 궁극기 타이머 -->
+        <button type="button" id="champion-btn-5" class="btn btn-outline-danger btn-champion">
+          <img id="champion-img-5" class="champion-img" src="./static/img/champion/Pyke.png">
+          <span id="ult-timer-5" class="ult-timer">00:00</span>
+        </button>
+
+        <!-- 스펠 D & F 타이머 -->
+        <ul class="spell-group">
+          <li class="my-auto d-block spell-li">
+            <button type="button" id="spellD-btn-5" class="btn btn-outline-danger btn-spell">D</button>
+            <span id="spellD-timer-5" class="spell-timer">00:00</span>
+          </li>
+          <li class="my-auto d-block spell-li">
+            <button type="button" id="spellF-btn-5" class="btn btn-outline-danger btn-spell">F</button>
+            <span id="spellF-timer-5" class="spell-timer">00:00</span>
+          </li>
+        </ul>
+
+      </div>
+
+      <!-- 룬 -->
+      <div class="col-3 my-auto">
+
+        <div class="row rune-group mx-auto">
+          <!-- 궁극의 사냥꾼 -->
+          <img id="rune-궁극의사냥꾼-5" class="rune-circle mx-auto my-1" src="./static/img/rune/rune-궁극의사냥꾼.png">
+          <!-- 깨달음 -->
+          <img id="rune-깨달음-5" class="rune-circle mx-auto my-1" src="./static/img/rune/rune-깨달음.png">
+        </div>
+
+        <div class="row rune-group mx-auto">
+          <!-- 봉인 풀린 주문서 -->
+          <img id="rune-봉인풀린주문서-5" class="rune-circle mx-auto my-1" src="./static/img/rune/rune-봉인풀린주문서.png">
+          <!-- 우주적 통찰력 -->
+          <img id="rune-우주적통찰력-5" class="rune-circle mx-auto my-1" src="./static/img/rune/rune-우주적통찰력.png">
+          <!-- 공격 재사용대기시간 -->
+          <img id="rune-공격-5" class="rune-circle mx-auto my-1" src="./static/img/rune/rune-공격.png">
         </div>
       </div>
 

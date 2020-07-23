@@ -5,7 +5,7 @@ const { ipcRenderer } = require('electron')
 
 // let summoner_id = 'ABfqliRE1NUIx1ETg1CQykZC2ef4qXs_60rXMLY4onkoEw'
 // let summoner_id = 'wsn3H2bhGEN7B_bYR5IKGp-jz2AVdwvhOadqsIhbMiNv01U'
-let summoner_id = 'nhtGsyA0ViqHvycOzIfejoprjFQZdA3dskS6ZH8KPRQYTF0'
+let summoner_id = 'h8FeZiRkU_95V6wNg8Of6e4AXrDsmb1nmEYgb2qaIIxTAsw'
 
 let champion_id_map = {}
 
