@@ -10,6 +10,9 @@
 .champion-img {
     width: 70px;
     height: 70px;
+}
+
+.ult-disabled {
     opacity: 0.3;
 }
 
