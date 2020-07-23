@@ -33,13 +33,18 @@ document.getElementById('fix-btn-s10').onclick = () => {
     set_fix_cooldown()
 }
 
+function set_champion_img(index, champion_name) {
+    index += 1
+    document.getElementById('champion-img-' + index).src = './static/img/champion/' + champion_name + '.png'
+}
+
 // check_disabled_rune : rune이 비활성화 상태라면 class를 추가해서 css 추가
-function check_disabled_rune() {
+function check_disabled_rune(index) {
     rune_map.forEach( (value, key) => {
         if (!value) {
-            document.getElementById('rune-' + key + '-' + 1).classList.add('disabled-rune');
+            document.getElementById('rune-' + key + '-' + index).classList.add('disabled-rune');
         } else {
-            document.getElementById('rune-' + key + '-' + 1).classList.remove('disabled-rune');
+            document.getElementById('rune-' + key + '-' + index).classList.remove('disabled-rune');
         }
     })
 }
