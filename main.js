@@ -86,7 +86,21 @@ ipcMain.on('request-live', (event) => {
     event.sender.send('response-live', response.data, true)
   }).catch(err => {
     console.log(err)
-    event.sender.send('response-live', '게임을 실행하고 버튼을 다시 눌러주세요.', false)
+    event.sender.send('response-live', 'ERROR live : 게임을 실행하고 버튼을 다시 눌러주세요.', false)
+  })
+
+})
+
+// 소환사명으로 소환사 ID 받기
+ipcMain.on('request-summoner', (event, summoner_name) => {
+
+  let summoner_url = 'https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/' + summoner_name + '?api_key=' + api_key
+
+  axios.get(summoner_url, { httpsAgent: agent }).then(response => {
+    event.sender.send('response-summoner', response.data, true)
+  }).catch(err => {
+    console.log(err)
+    event.sender.send('response-summoner', 'ERROR summoner : 게임을 실행하고 버튼을 다시 눌러주세요.', false)
   })
 
 })
@@ -100,7 +114,7 @@ ipcMain.on('request-match', (event, summoner_id) => {
     event.sender.send('response-match', response.data, true)
   }).catch(err => {
     console.log(err)
-    event.sender.send('response-match', '게임을 진행 중이지 않습니다.', false)
+    event.sender.send('response-match', 'ERROR match : 게임을 진행 중이지 않습니다.', false)
   })
 
 })
