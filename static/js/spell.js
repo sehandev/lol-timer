@@ -2,29 +2,11 @@
 
 let summoner_array = []
 
-// 재사용대기시간 수정 btn click event listner
-for (let i = 1; i <= 5; i++) {
-    document.getElementById('fix-btn-p5-' + i).onclick = () => {
-        fix_cool += 5
-        set_fix_cooldown(i)
-    }
-    document.getElementById('fix-btn-p10-' + i).onclick = () => {
-        fix_cool += 10
-        set_fix_cooldown(i)
-    }
-    document.getElementById('fix-btn-s5-' + i).onclick = () => {
-        fix_cool -= 5
-        set_fix_cooldown(i)
-    }
-    document.getElementById('fix-btn-s10-' + i).onclick = () => {
-        fix_cool -= 10
-        set_fix_cooldown(i)
-    }
-}
-
 function set_champion_img(index, champion_name) {
     index += 1
-    document.getElementById('champion-img-' + index).src = './static/img/champion/' + champion_name + '.png'
+    if (champion_name != undefined) {
+        document.getElementById('champion-img-' + index).src = './static/img/champion/' + champion_name + '.png'
+    }
 }
 
 // check_disabled_rune : rune이 비활성화 상태라면 class를 추가해서 css 추가
@@ -93,8 +75,8 @@ function check_final_ult_cool_range(ult_cool) {
 
 // set_final_ult_cooldown : 궁극기 재사용대기시간 반영
 function set_final_ult_cooldown(index) {
-    let final_ult_cool = summoner_array[index].final_ult_cool
-    final_ult_cool = summoner_array[index].rune_cool + summoner_array[index].fix_cool
+    let final_ult_cool = summoner_array[index].rune_cool + summoner_array[index].fix_cool
+    summoner_array[index].final_ult_cool = final_ult_cool
     document.getElementById('final-ult-cool-' + summoner_array[index].index).innerHTML = check_final_ult_cool_range(final_ult_cool);
 }
 
@@ -105,6 +87,7 @@ function set_final_spell_cooldown(index) {
 
 
 function init() {
+
     for (let i = 0; i < 5; i++) {
         let summoner = {
             index: i + 1,
@@ -128,14 +111,33 @@ function init() {
         }
         summoner_array.push(summoner)
     }
-    
+
     for (let i = 0; i < 5; i++) {
         check_disabled_rune(i)
         calculate_rune_cool(i)
         set_fix_cooldown(i)
         set_final_spell_cooldown(i)
     }
-    
+
+    // 재사용대기시간 수정 btn click event listner
+    for (let i = 0; i < 5; i++) {
+        document.getElementById('fix-btn-p5-' + summoner_array[i].index).onclick = () => {
+            summoner_array[i].fix_cool += 5
+            set_fix_cooldown(i)
+        }
+        document.getElementById('fix-btn-p10-' + summoner_array[i].index).onclick = () => {
+            summoner_array[i].fix_cool += 10
+            set_fix_cooldown(i)
+        }
+        document.getElementById('fix-btn-s5-' + summoner_array[i].index).onclick = () => {
+            summoner_array[i].fix_cool -= 5
+            set_fix_cooldown(i)
+        }
+        document.getElementById('fix-btn-s10-' + summoner_array[i].index).onclick = () => {
+            summoner_array[i].fix_cool -= 10
+            set_fix_cooldown(i)
+        }
+    }
 }
 
 init()
