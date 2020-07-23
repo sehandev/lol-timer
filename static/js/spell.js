@@ -2,24 +2,43 @@
 
 let summoner_array = []
 
-function set_champion_img(index, champion_name) {
-    index += 1
+function set_champion(index, champion_name) {
+    summoner_array[index].champion_name = champion_name
     if (champion_name != undefined) {
-        document.getElementById('champion-img-' + index).src = './static/img/champion/' + champion_name + '.png'
+        document.getElementById('champion-img-' + summoner_array[index].index).src = './static/img/champion/' + champion_name + '.png'
     }
+}
+
+let rune_array = {
+    8106: '궁극의사냥꾼',
+    8210: '깨달음',
+    8360: '봉인풀린주문서',
+    8347: '우주적통찰력',
+    5007: '공격'
+}
+
+// check_perk : 착용 중인 rune(perk) 중 재사용대기시간에 영향을 주는 5개 확인하기
+function check_perk(index, perk_array) {
+
+    Object.entries(rune_array).forEach(element => {
+        // element : ['8106', '궁극의사냥꾼']
+        if (perk_array.includes(Number(element[0]))) {
+            summoner_array[index].rune_map[element[1]] = true
+        }
+    })
+    check_disabled_rune(index)
 }
 
 // check_disabled_rune : rune이 비활성화 상태라면 class를 추가해서 css 추가
 function check_disabled_rune(index) {
-    let summoner_index = summoner_array[index].index
     Object.entries(summoner_array[index].rune_map).forEach(element => {
         let rune_name = element[0]
         let rune_active = element[1]
 
         if (!rune_active) {
-            document.getElementById('rune-' + rune_name + '-' + summoner_index).classList.add('disabled-rune');
+            document.getElementById('rune-' + rune_name + '-' + summoner_array[index].index).classList.add('disabled-rune');
         } else {
-            document.getElementById('rune-' + rune_name + '-' + summoner_index).classList.remove('disabled-rune');
+            document.getElementById('rune-' + rune_name + '-' + summoner_array[index].index).classList.remove('disabled-rune');
         }
     })
 }
