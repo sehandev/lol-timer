@@ -52,18 +52,24 @@ app.on('window-all-closed', () => {
 const fs = require('fs')
 const https = require('https')
 const axios = require('axios').default
-const api_key = 'RGAPI-465eb062-6660-4a3e-89fe-eb12523706a3'
-const get_champion_obj = require(path.join(__dirname, 'static/js/json_reader'))
+const api_key = 'RGAPI-d281d012-c09b-459c-9a23-a422702d6c9d'
+const json_reader = require(path.join(__dirname, 'static/js/json_reader'))
 
 const agent = new https.Agent({
   rejectUnauthorized: false
 })
 
-let champion_obj = get_champion_obj() // [ 'champion_name': 'Nunu', 'ult_cool': [ 110, 100, 90] ]
+let champion_obj = json_reader.get_champion_obj() // 123 : [ 'champion_name': 'Nunu', 'ult_cool': [ 110, 100, 90] ]
+let spell_obj = json_reader.get_spell_obj() // 456 : [ 'spell_name': 'SummonerFlash', 'spell_cool': 300 ]
 
 // Champion data 요청
 ipcMain.on('request-champion', (event) => {
   event.sender.send('response-champion', champion_obj)
+})
+
+// Spell data 요청
+ipcMain.on('request-spell', (event) => {
+  event.sender.send('response-spell', spell_obj)
 })
 
 // 실행 중인 LOL Client의 live data 요청

@@ -12,7 +12,16 @@
     height: 70px;
 }
 
+.spell-img {
+    width: 28px;
+    height: 28px;
+}
+
 .ult-disabled {
+    opacity: 0.3;
+}
+
+.spell-disabled {
     opacity: 0.3;
 }
 
