@@ -62,6 +62,7 @@ let rune_array = {
     5007: '공격'
 }
 
+// check_perk : 착용 중인 rune(perk) 중 재사용대기시간에 영향을 주는 5개 확인하기
 function check_perk(perk_array) {
 
     Object.entries(rune_array).forEach(element => {
