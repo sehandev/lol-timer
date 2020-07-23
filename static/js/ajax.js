@@ -5,7 +5,7 @@ const { ipcRenderer } = require('electron')
 
 // let summoner_id = 'ABfqliRE1NUIx1ETg1CQykZC2ef4qXs_60rXMLY4onkoEw'
 // let summoner_id = 'wsn3H2bhGEN7B_bYR5IKGp-jz2AVdwvhOadqsIhbMiNv01U'
-let summoner_id = 'h8FeZiRkU_95V6wNg8Of6e4AXrDsmb1nmEYgb2qaIIxTAsw'
+let summoner_id = '4PBF2EGGmdNYXsnUEYQbkyJcl_ZyAD584vrSjLtPwcNQ4lQ'
 
 let champion_id_map = {}
 
@@ -57,7 +57,6 @@ ipcRenderer.on('response-match', (_, data, is_ok) => {
 })
 
 ipcRenderer.on('response-championID', (_, data) => {
-    console.log(data)
     champion_id_map = data
 })
 
@@ -75,19 +74,10 @@ function check_perk(index, perk_array) {
     Object.entries(rune_array).forEach(element => {
         // element : ['8106', '궁극의사냥꾼']
         if (perk_array.includes(Number(element[0]))) {
-            console.log(element[1])
-            rune_map.set(element[1], true)
+            summoner_array[index].rune_map[element[1]] = true
         }
     })
-    check_disabled_rune(index + 1)
-
-
-    // TEST
-    rune_map.set('궁극의사냥꾼', false)
-    rune_map.set('깨달음', false)
-    rune_map.set('봉인풀린주문서', false)
-    rune_map.set('우주적통찰력', false)
-    rune_map.set('공격', false)
+    check_disabled_rune(index)
 }
 
 function test() {
