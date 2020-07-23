@@ -61,7 +61,7 @@ const agent = new https.Agent({
 // Champion ID-Name data 요청
 ipcMain.on('request-championID', (event) => {
 
-  const id_name_file_path = './static/etc/champion_id.txt'
+  const id_name_file_path = path.join(__dirname, 'static/etc/champion_id.txt')
 
   fs.readFile(id_name_file_path, 'utf8', (err, data) => {
     let id_name_array = data.split('\r\n')
