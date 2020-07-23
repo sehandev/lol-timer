@@ -1,31 +1,39 @@
-
 'use strict'
 
 const { ipcRenderer } = require('electron')
 
-// let summoner_id = 'ABfqliRE1NUIx1ETg1CQykZC2ef4qXs_60rXMLY4onkoEw'
-// let summoner_id = 'wsn3H2bhGEN7B_bYR5IKGp-jz2AVdwvhOadqsIhbMiNv01U'
-let summoner_id = '4PBF2EGGmdNYXsnUEYQbkyJcl_ZyAD584vrSjLtPwcNQ4lQ'
-
+let player_id
 let champion_id_map = {}
-
 
 function axios_live() {
     ipcRenderer.send('request-live')
 }
 
 function axios_match() {
-    ipcRenderer.send('request-match', summoner_id)
+    ipcRenderer.send('request-match', player_id)
 }
 
 function axios_championID() {
     ipcRenderer.send('request-championID')
 }
 
-
-ipcRenderer.on('response-live', (_, data, is_ok) => {
+ipcRenderer.on('response-live', (event, data, is_ok) => {
     if (is_ok) {
+        let player_name = data.activePlayer.summonerName
+        document.getElementById('summoner-name').innerText = player_name
+        event.sender.send('request-summoner', player_name, true)
+
+        let player_list = data.allPlayers
+        console.log(player_list)
+    } else {
+        // error
         console.log(data)
+    }
+})
+
+ipcRenderer.on('response-summoner', (_, data, is_ok) => {
+    if (is_ok) {
+        // player_id = data.id
     } else {
         // error
         console.log(data)
@@ -35,7 +43,7 @@ ipcRenderer.on('response-live', (_, data, is_ok) => {
 ipcRenderer.on('response-match', (_, data, is_ok) => {
     if (is_ok) {
         let participants = data.participants
-        let team_id = participants.find(element => element.summonerId == summoner_id).teamId // 아군 team id
+        let team_id = participants.find(element => element.summonerId == player_id).teamId // 아군 team id
 
         let enemy_array = participants.filter(element => element.teamId != team_id)
         for (let i = 0; i < enemy_array.length; i++) {
@@ -48,7 +56,7 @@ ipcRenderer.on('response-match', (_, data, is_ok) => {
 
             let spell1_id = enemy_array[i].spell1Id
             let spell2_id = enemy_array[i].spell2Id
-            
+
         }
     } else {
         // error
@@ -80,10 +88,11 @@ function check_perk(index, perk_array) {
     check_disabled_rune(index)
 }
 
-function test() {
-    // axios_live()
+function init() {
+    player_id = window.location.search.substring(4)
+    axios_live()
     axios_championID()
     axios_match()
 }
 
-test()
+init()
