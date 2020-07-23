@@ -26,60 +26,18 @@
       <button type="button" id="close-btn" class="btn btn-secondary float-right"><i class="fas fa-times"></i></button>
     </div>
 
-    <form class="row float-none" action="spell.html">
-      <div class="col-10 form-group align-middle">
-        <input type="text" class="form-control" id="summoner-name" placeholder="소환사 이름을 입력해주세요">
-      </div>
-      <div class="col-2">
-        <button id="name-search-btn" type="submit" class="btn">검색</button>
-      </div>
-    </form>
-
-    <hr class="horizontal-line">
-
-    <p>최근 기록</p>
-
-    <div class="row">
-      <div class="col-6 my-1">
-        <button type="button" class="btn btn-outline-danger btn-block">세한A</button>
-      </div>
-      <div class="col-6 my-1">
-        <button type="button" class="btn btn-outline-danger btn-block">D세한D</button>
-      </div>
-      <div class="col-6 my-1">
-        <button type="button" class="btn btn-outline-danger btn-block">이름여덟글자제한</button>
-      </div>
-      <div class="col-6 my-1">
-        <button type="button" class="btn btn-outline-danger btn-block">이름여덟글자제한</button>
-      </div>
-      <div class="col-6 my-1">
-        <button type="button" class="btn btn-outline-danger btn-block">이름여덟글자제한</button>
-      </div>
-      <div class="col-6 my-1">
-        <button type="button" class="btn btn-outline-danger btn-block">이름여덟글자제한</button>
-      </div>
-      <div class="col-6 my-1">
-        <button type="button" class="btn btn-outline-danger btn-block">이름여덟글자제한</button>
-      </div>
-      <div class="col-6 my-1">
-        <button type="button" class="btn btn-outline-danger btn-block">이름여덟글자제한</button>
-      </div>
-      <div class="col-6 my-1">
-        <button type="button" class="btn btn-outline-danger btn-block">이름여덟글자제한</button>
-      </div>
-      <div class="col-6 my-1">
-        <button type="button" class="btn btn-outline-danger btn-block">이름여덟글자제한</button>
-      </div>
-      <div class="col-6 my-1">
-        <button type="button" class="btn btn-outline-danger btn-block">이름여덟글자제한</button>
-      </div>
+    <div id="reload-row" class="row my-auto">
+      <button id="reload-btn" class="btn btn-danger btn-lg m-auto h-50">새로고침</button>
     </div>
 
-
+    <div class="row my-auto">
+      <button type="button" id="active-player-btn" class="btn btn-outline-danger btn-lg btn-block disabled m-auto w-75">게임을 실행하고 새로고침을 눌러주세요.</button>
+    </div>
   </div>
 
   <!-- You can also require other files to run in this process -->
   <script src="./static/js/renderer.js"></script>
+  <script src="./static/js/index.js"></script>
 </body>
 
 </html>

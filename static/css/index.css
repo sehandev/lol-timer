@@ -3,3 +3,11 @@
     background-color: #d13639;
     font-size: 16px;
 }
+
+.disabled {
+    cursor: default !important;
+}
+
+#reload-row {
+    height: 140px;
+}
