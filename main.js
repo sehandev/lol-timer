@@ -53,28 +53,17 @@ const fs = require('fs')
 const https = require('https')
 const axios = require('axios').default
 const api_key = 'RGAPI-465eb062-6660-4a3e-89fe-eb12523706a3'
+const get_champion_obj = require(path.join(__dirname, 'static/js/json_reader'))
 
 const agent = new https.Agent({
   rejectUnauthorized: false
 })
 
-// Champion ID-Name data 요청
-ipcMain.on('request-championID', (event) => {
+let champion_obj = get_champion_obj() // [ 'champion_name': 'Nunu', 'ult_cool': [ 110, 100, 90] ]
 
-  const id_name_file_path = path.join(__dirname, 'static/etc/champion_id.txt')
-
-  fs.readFile(id_name_file_path, 'utf8', (err, data) => {
-    let id_name_array = data.split('\r\n')
-    let id_name_map = {}
-
-    for (let index = 0; index < id_name_array.length; index++) {
-      let element = id_name_array[index].split(' ')
-      id_name_map[Number(element[0])] = element[1]
-    }
-
-    event.sender.send('response-championID', id_name_map)
-  })
-
+// Champion data 요청
+ipcMain.on('request-champion', (event) => {
+  event.sender.send('response-champion', champion_obj)
 })
 
 // 실행 중인 LOL Client의 live data 요청
