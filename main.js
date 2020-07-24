@@ -60,8 +60,9 @@ const agent = new https.Agent({
   rejectUnauthorized: false
 })
 
-let champion_obj = json_reader.get_champion_obj() // '123' : { 'champion_name': 'Nunu', 'ult_cool': [ 110, 100, 90] }
+let champion_obj = json_reader.get_champion_obj() // '123' : { 'champion_name': 'Nunu', 'ult_cool': [ 110, 100, 90 ] }
 let spell_obj = json_reader.get_spell_obj() // '456' : { 'spell_name': 'SummonerFlash', 'spell_cool': 300 }
+let item_obj = json_reader.get_item_obj() // '789' : { 'item_name': '슈렐리아의 몽상', 'item_description': '... 재사용 대기시간 감소 +10% ...', 'item_tags': ['CooldownReduction'], 'cool': 10 }
 
 // Champion data 요청
 ipcMain.on('request-champion', (event) => {
@@ -71,6 +72,11 @@ ipcMain.on('request-champion', (event) => {
 // Spell data 요청
 ipcMain.on('request-spell', (event) => {
   event.sender.send('response-spell', spell_obj)
+})
+
+// Item data 요청
+ipcMain.on('request-item', (event) => {
+  event.sender.send('response-item', item_obj)
 })
 
 // 실행 중인 LOL Client의 live data 요청

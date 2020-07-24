@@ -3,8 +3,9 @@
 const { ipcRenderer } = require('electron')
 
 let player_id
-let champion_obj = {} // 123 : [ 'champion_name': 'Nunu', 'ult_cool': [ 110, 100, 90] ]
-let spell_obj = {} // 456 : [ 'spell_name': 'SummonerFlash', 'spell_cool': 300 ]
+let champion_obj = {} // '123' : { 'champion_name': 'Nunu', 'ult_cool': [ 110, 100, 90 ] }
+let spell_obj = {} // '456' : { 'spell_name': 'SummonerFlash', 'spell_cool': 300 }
+let item_obj = {} // '789' : { 'item_name': '슈렐리아의 몽상', 'item_description': '... 재사용 대기시간 감소 +10% ...', 'item_tags': ['CooldownReduction'], 'cool': 10 }
 
 function axios_live() {
     ipcRenderer.send('request-live')
@@ -20,6 +21,10 @@ function axios_champion() {
 
 function axios_spell() {
     ipcRenderer.send('request-spell')
+}
+
+function axios_item() {
+    ipcRenderer.send('request-item')
 }
 
 ipcRenderer.on('response-live', (event, data, is_ok) => {
@@ -74,9 +79,14 @@ ipcRenderer.on('response-spell', (_, data) => {
     spell_obj = data
 })
 
+ipcRenderer.on('response-item', (_, data) => {
+    item_obj = data
+})
+
 function init() {
     axios_champion()
     axios_spell()
+    axios_item()
     player_id = window.location.search.substring(4)
     axios_match()
 
