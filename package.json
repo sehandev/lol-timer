@@ -1,6 +1,6 @@
 {
-  "name": "lol_timer",
-  "version": "0.0.1",
+  "name": "zilean_timer",
+  "version": "1.0.0",
   "description": "League of Legends skill & spell timer",
   "main": "main.js",
   "scripts": {
@@ -21,13 +21,12 @@
     "node_modules/popper.js/"
   ],
   "build": {
-    "productName": "zileanTimer",
+    "productName": "Zilean Timer",
     "appId": "com.sehandev.zileanTimer",
     "asar": true,
     "win": {
       "target": [
-        "zip",
-        "nsis"
+        "portable"
       ],
       "icon": "static/img/icon.png"
     }
