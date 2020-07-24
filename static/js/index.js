@@ -38,9 +38,3 @@ ipcRenderer.on('response-summoner', (_, data, is_ok) => {
 })
 
 axios_live()
-
-// TEST
-player_id = 'xgpNAEhX6vvhG8VXqzNFgviQCpfKCy6ruVh5TDnof4-jDCk'
-document.getElementById('active-player-btn').onclick = () => {
-    window.location.href = 'spell.html?id=' + player_id
-}

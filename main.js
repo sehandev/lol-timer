@@ -5,15 +5,15 @@ const path = require('path')
 function createWindow() {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 1366,
-    // width: 577,
+    width: 577,
     height: 700,
     resizable: false,
     webPreferences: {
-      preload: path.join(__dirname, 'static/js/preload.js'),
-      nodeIntegration: true
+      nodeIntegration: true,
+      devTools: false
     },
-    frame: false
+    frame: false,
+    icon: path.join(__dirname, 'static/img/icon.ico')
   })
 
   // Set window position
@@ -23,7 +23,7 @@ function createWindow() {
   mainWindow.loadFile('index.html')
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools()
+  // mainWindow.webContents.openDevTools()
 }
 
 // This method will be called when Electron has finished
@@ -52,7 +52,8 @@ app.on('window-all-closed', () => {
 const fs = require('fs')
 const https = require('https')
 const axios = require('axios').default
-const api_key = 'RGAPI-d281d012-c09b-459c-9a23-a422702d6c9d'
+const get_api_key = require(path.join(__dirname, 'static/js/riot_api'))
+const api_key = get_api_key()
 const json_reader = require(path.join(__dirname, 'static/js/json_reader'))
 
 const agent = new https.Agent({
