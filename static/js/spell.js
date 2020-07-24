@@ -12,9 +12,10 @@ function set_champion(index, champion_id, champion_name) {
 }
 
 // spell_obj : { 'spell_name' : 'SummonerBarrier', 'spell_cool' : 180 }
-function set_spellD(index, spell_obj) {
+function set_spellD(index, spell_obj, spell_id) {
     let spell_name = spell_obj.spell_name
     if (spell_name != undefined) {
+        summoner_array[index].spellD_id = spell_id
         summoner_array[index].spellD_name = spell_name
         summoner_array[index].spellD = spell_obj.spell_cool[summoner_array[index].level]
         document.getElementById('spellD-btn-' + summoner_array[index].index).innerHTML = `<img id="spellD-img-` + summoner_array[index].index + `" class="spell-img">`
@@ -23,9 +24,10 @@ function set_spellD(index, spell_obj) {
 }
 
 // spell_obj : { 'spell_name' : 'SummonerBarrier', 'spell_cool' : 180 }
-function set_spellF(index, spell_obj) {
+function set_spellF(index, spell_obj, spell_id) {
     let spell_name = spell_obj.spell_name
     if (spell_name != undefined) {
+        summoner_array[index].spellF_id = spell_id
         summoner_array[index].spellF_name = spell_name
         summoner_array[index].spellF = spell_obj.spell_cool[summoner_array[index].level]
         document.getElementById('spellF-btn-' + summoner_array[index].index).innerHTML = `<img id="spellF-img-` + summoner_array[index].index + `" class="spell-img">`
@@ -144,9 +146,11 @@ function init() {
             ult: 5, // 궁극기 재사용대기시간
             ult_time: 0, // 궁극기 남은 시간
             spellD: 10, // D spell 재사용대기시간
+            spellD_id: 0, // D spell key
             spellD_time: 0, // D spell 남은 시간
             spellD_name: "", // D spell 이름
             spellF: 20, // F spell 재사용대기시간
+            spellF_id: 0, // F spell key
             spellF_time: 0, // F spell 남은 시간
             spellF_name: "", // F spell 이름
             rune_map: { // rune 활성화 여부
