@@ -2,10 +2,10 @@
 
 let summoner_array = []
 
-function set_champion(index, champion_name) {
+function set_champion(index, champion_id, champion_name) {
     if (champion_name != undefined) {
         summoner_array[index].champion_name = champion_name
-        summoner_array[index].ult = champion_obj.ult_cool[summoner_array[index].level]
+        summoner_array[index].ult = champion_obj[champion_id].ult_cool[summoner_array[index].level]
         document.getElementById('champion-img-' + summoner_array[index].index).src = './static/img/champion/' + champion_name + '.png'
     }
 }
@@ -138,7 +138,7 @@ function init() {
         let summoner = {
             index: i + 1,
             summoner_name: "", // 소환사명
-            level: 1,
+            level: 0,
             ult: 5, // 궁극기 재사용대기시간
             ult_time: 0, // 궁극기 남은 시간
             spellD: 10, // D spell 재사용대기시간

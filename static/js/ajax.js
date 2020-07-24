@@ -27,7 +27,7 @@ ipcRenderer.on('response-live', (event, data, is_ok) => {
         let player_list = data.allPlayers
         for (let i = 0; i < summoner_array.length; i++) {
             let summoner = player_list.find(element => element.summonerName == summoner_array[i].summoner_name)
-            summoner_array[i].level = summoner.level
+            summoner_array[i].level = Number(summoner.level) - 1
         }
     } else {
         // error
@@ -47,7 +47,7 @@ ipcRenderer.on('response-match', (_, data, is_ok) => {
 
             summoner_array[i].summoner_name = enemy_array[i].summonerName
             let champion_name = champion_obj[enemy_array[i].championId].champion_name
-            set_champion(i, champion_name)
+            set_champion(i, enemy_array[i].championId, champion_name)
 
             let perk_array = enemy_array[i].perks.perkIds
             check_perk(i, perk_array)
@@ -55,6 +55,11 @@ ipcRenderer.on('response-match', (_, data, is_ok) => {
             set_spellD(i, spell_obj[enemy_array[i].spell1Id])
             set_spellF(i, spell_obj[enemy_array[i].spell2Id])
         }
+
+        // 10초마다 level, spell 갱신
+        setInterval(() => {
+            axios_live()
+        }, 10000)
     } else {
         // error
         console.log(data)
@@ -70,16 +75,11 @@ ipcRenderer.on('response-spell', (_, data) => {
 })
 
 function init() {
-    player_id = window.location.search.substring(4)
-    axios_live()
-    axios_match()
     axios_champion()
     axios_spell()
+    player_id = window.location.search.substring(4)
+    axios_match()
 
-    // 10초마다 level, spell 갱신
-    setInterval(() => {
-        axios_live()
-    }, 10000)
 }
 
 init()
