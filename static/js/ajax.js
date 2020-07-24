@@ -33,6 +33,13 @@ ipcRenderer.on('response-live', (event, data, is_ok) => {
         for (let i = 0; i < summoner_array.length; i++) {
             let summoner = player_list.find(element => element.summonerName == summoner_array[i].summoner_name)
             summoner_array[i].level = Number(summoner.level) - 1
+            if (summoner_array[i].rune_map['공격']) {
+                summoner_array[i].rune_cool += (0.529 * summoner.level)
+            }
+            if (summoner_array[i].rune_map['깨달음'] && summoner.level >= 10) {
+                summoner_array[i].rune_cool += 10
+            }
+
             summoner_array[i].fix_cool = 0
             summoner.items.forEach(element => {
                 let cooldown_item = item_obj[element.itemID]

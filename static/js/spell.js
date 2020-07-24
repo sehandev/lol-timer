@@ -76,7 +76,7 @@ function calculate_rune_cool(index) {
         summoner_array[index].rune_cool += 5
     }
     if (rune_map['깨달음']) {
-        summoner_array[index].rune_cool += 10
+        // live data에 따라 rune_cool 변경
     }
     if (rune_map['봉인풀린주문서']) {
         // TODO : 봉인풀린주문서 rune의 효과 조사 필요
@@ -87,8 +87,7 @@ function calculate_rune_cool(index) {
         set_final_spell_cooldown(index)
     }
     if (rune_map['공격']) {
-        // TODO : 원래는 level에 따라서 증가하지만 시간으로 대체
-        summoner_array[index].rune_cool += 0
+        // live data에 따라 rune_cool 변경
     }
 
     set_fix_cooldown(index)
