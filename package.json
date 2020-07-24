@@ -28,7 +28,8 @@
       "target": [
         "zip",
         "nsis"
-      ]
+      ],
+      "icon": "static/img/icon.png"
     }
   },
   "dependencies": {
