@@ -13,7 +13,7 @@ function createWindow() {
       devTools: false
     },
     frame: false,
-    icon: path.join(__dirname, 'static/img/icon.ico')
+    icon: path.join(__dirname, 'static/img/icon.png')
   })
 
   // Set window position
