@@ -40,6 +40,7 @@ ipcRenderer.on('response-live', (event, data, is_ok) => {
                     summoner_array[i].fix_cool += Number(cooldown_item.cool)
                 }
             });
+            set_fix_cooldown(i)
 
             set_spellD(i, spell_obj[summoner_array[i].spellD_id], summoner_array[i].spellD_id)
             set_spellF(i, spell_obj[summoner_array[i].spellF_id], summoner_array[i].spellF_id)
