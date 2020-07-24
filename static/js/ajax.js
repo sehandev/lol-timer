@@ -25,7 +25,10 @@ function axios_spell() {
 ipcRenderer.on('response-live', (event, data, is_ok) => {
     if (is_ok) {
         let player_list = data.allPlayers
-        console.log(player_list)
+        for (let i = 0; i < summoner_array.length; i++) {
+            let summoner = player_list.find(element => element.summonerName == summoner_array[i].summoner_name)
+            summoner_array[i].level = summoner.level
+        }
     } else {
         // error
         console.log(data)
@@ -42,6 +45,7 @@ ipcRenderer.on('response-match', (_, data, is_ok) => {
         let enemy_array = participants.filter(element => element.teamId != team_id)
         for (let i = 0; i < enemy_array.length; i++) {
 
+            summoner_array[i].summoner_name = enemy_array[i].summonerName
             let champion_name = champion_obj[enemy_array[i].championId].champion_name
             set_champion(i, champion_name)
 
@@ -50,7 +54,6 @@ ipcRenderer.on('response-match', (_, data, is_ok) => {
 
             set_spellD(i, spell_obj[enemy_array[i].spell1Id])
             set_spellF(i, spell_obj[enemy_array[i].spell2Id])
-
         }
     } else {
         // error

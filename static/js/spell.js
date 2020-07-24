@@ -137,6 +137,7 @@ function init() {
     for (let i = 0; i < 5; i++) {
         let summoner = {
             index: i + 1,
+            summoner_name: "", // 소환사명
             level: 1,
             ult: 5, // 궁극기 재사용대기시간
             ult_time: 0, // 궁극기 남은 시간
