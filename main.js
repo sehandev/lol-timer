@@ -59,8 +59,8 @@ const agent = new https.Agent({
   rejectUnauthorized: false
 })
 
-let champion_obj = json_reader.get_champion_obj() // 123 : [ 'champion_name': 'Nunu', 'ult_cool': [ 110, 100, 90] ]
-let spell_obj = json_reader.get_spell_obj() // 456 : [ 'spell_name': 'SummonerFlash', 'spell_cool': 300 ]
+let champion_obj = json_reader.get_champion_obj() // '123' : { 'champion_name': 'Nunu', 'ult_cool': [ 110, 100, 90] }
+let spell_obj = json_reader.get_spell_obj() // '456' : { 'spell_name': 'SummonerFlash', 'spell_cool': 300 }
 
 // Champion data 요청
 ipcMain.on('request-champion', (event) => {

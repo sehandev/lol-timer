@@ -48,10 +48,8 @@ ipcRenderer.on('response-match', (_, data, is_ok) => {
             let perk_array = enemy_array[i].perks.perkIds
             check_perk(i, perk_array)
 
-            let spell1_name = spell_obj[enemy_array[i].spell1Id].spell_name
-            set_spellD(i, spell1_name)
-            let spell2_name = spell_obj[enemy_array[i].spell2Id].spell_name
-            set_spellF(i, spell2_name)
+            set_spellD(i, spell_obj[enemy_array[i].spell1Id])
+            set_spellF(i, spell_obj[enemy_array[i].spell2Id])
 
         }
     } else {

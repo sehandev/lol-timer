@@ -5,26 +5,32 @@ let summoner_array = []
 function set_champion(index, champion_name) {
     if (champion_name != undefined) {
         summoner_array[index].champion_name = champion_name
+        summoner_array[index].ult = champion_obj.ult_cool[summoner_array[index].level]
         document.getElementById('champion-img-' + summoner_array[index].index).src = './static/img/champion/' + champion_name + '.png'
     }
 }
 
-function set_spellD(index, spell_name) {
+// spell_obj : { 'spell_name' : 'SummonerBarrier', 'spell_cool' : 180 }
+function set_spellD(index, spell_obj) {
+    let spell_name = spell_obj.spell_name
     if (spell_name != undefined) {
         summoner_array[index].spellD_name = spell_name
+        summoner_array[index].spellD = spell_obj.spell_cool[summoner_array[index].level]
         document.getElementById('spellD-btn-' + summoner_array[index].index).innerHTML = `<img id="spellD-img-` + summoner_array[index].index + `" class="spell-img">`
         document.getElementById('spellD-img-' + summoner_array[index].index).src = './static/img/spell/' + spell_name + '.png'
     }
 }
 
-function set_spellF(index, spell_name) {
+// spell_obj : { 'spell_name' : 'SummonerBarrier', 'spell_cool' : 180 }
+function set_spellF(index, spell_obj) {
+    let spell_name = spell_obj.spell_name
     if (spell_name != undefined) {
         summoner_array[index].spellF_name = spell_name
+        summoner_array[index].spellF = spell_obj.spell_cool[summoner_array[index].level]
         document.getElementById('spellF-btn-' + summoner_array[index].index).innerHTML = `<img id="spellF-img-` + summoner_array[index].index + `" class="spell-img">`
         document.getElementById('spellF-img-' + summoner_array[index].index).src = './static/img/spell/' + spell_name + '.png'
     }
 }
-
 let rune_array = {
     8106: '궁극의사냥꾼',
     8210: '깨달음',
@@ -131,6 +137,7 @@ function init() {
     for (let i = 0; i < 5; i++) {
         let summoner = {
             index: i + 1,
+            level: 1,
             ult: 5, // 궁극기 재사용대기시간
             ult_time: 0, // 궁극기 남은 시간
             spellD: 10, // D spell 재사용대기시간
