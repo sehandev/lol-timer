@@ -66,17 +66,17 @@ function check_disabled_rune(index) {
             document.getElementById('rune-' + rune_name + '-' + summoner_array[index].index).classList.remove('disabled-rune')
         }
     })
-    calculate_rune_cool(index)
 }
 
 // calculate_rune_cool : rune_cool (rune으로 인한 재사용대기시간) 계산
 function calculate_rune_cool(index) {
     let rune_map = summoner_array[index].rune_map
+    summoner_array[index].rune_cool = 0
     if (rune_map['궁극의사냥꾼']) {
         summoner_array[index].rune_cool += 5
     }
-    if (rune_map['깨달음']) {
-        // live data에 따라 rune_cool 변경
+    if (rune_map['깨달음'] && summoner_array[index].level >= 10) {
+        summoner_array[index].rune_cool += 10
     }
     if (rune_map['봉인풀린주문서']) {
         // TODO : 봉인풀린주문서 rune의 효과 조사 필요
@@ -87,7 +87,7 @@ function calculate_rune_cool(index) {
         set_final_spell_cooldown(index)
     }
     if (rune_map['공격']) {
-        // live data에 따라 rune_cool 변경
+        summoner_array[i].rune_cool += (0.529 * (summoner_array[i].level + 1))
     }
 
     set_fix_cooldown(index)

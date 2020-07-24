@@ -33,12 +33,8 @@ ipcRenderer.on('response-live', (event, data, is_ok) => {
         for (let i = 0; i < summoner_array.length; i++) {
             let summoner = player_list.find(element => element.summonerName == summoner_array[i].summoner_name)
             summoner_array[i].level = Number(summoner.level) - 1
-            if (summoner_array[i].rune_map['공격']) {
-                summoner_array[i].rune_cool += (0.529 * summoner.level)
-            }
-            if (summoner_array[i].rune_map['깨달음'] && summoner.level >= 10) {
-                summoner_array[i].rune_cool += 10
-            }
+
+            calculate_rune_cool(i)
 
             summoner_array[i].fix_cool = 0
             summoner.items.forEach(element => {
@@ -83,6 +79,7 @@ ipcRenderer.on('response-match', (_, data, is_ok) => {
         }
 
         // 10초마다 level, spell 갱신
+        axios_live()
         setInterval(() => {
             axios_live()
         }, 10000)
