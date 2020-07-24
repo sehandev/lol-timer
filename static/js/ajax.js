@@ -33,6 +33,16 @@ ipcRenderer.on('response-live', (event, data, is_ok) => {
         for (let i = 0; i < summoner_array.length; i++) {
             let summoner = player_list.find(element => element.summonerName == summoner_array[i].summoner_name)
             summoner_array[i].level = Number(summoner.level) - 1
+            summoner_array[i].fix_cool = 0
+            summoner.items.forEach(element => {
+                let cooldown_item = item_obj[element.itemID]
+                if (cooldown_item) {
+                    summoner_array[i].fix_cool += Number(cooldown_item.cool)
+                }
+            });
+
+            set_spellD(i, spell_obj[summoner_array[i].spellD_id], summoner_array[i].spellD_id)
+            set_spellF(i, spell_obj[summoner_array[i].spellF_id], summoner_array[i].spellF_id)
         }
     } else {
         // error
@@ -47,18 +57,21 @@ ipcRenderer.on('response-match', (_, data, is_ok) => {
         document.getElementById('summoner-name').innerText = player.summonerName
         let team_id = player.teamId // 아군 team id
 
-        let enemy_array = participants.filter(element => element.teamId != team_id)
-        for (let i = 0; i < enemy_array.length; i++) {
+        for (let i = 0, index = 0; i < participants.length; i++) {
+            if (participants[i].teamId != team_id) {
+                let enemy = participants[i]
+                summoner_array[index].summoner_name = enemy.summonerName
+                let champion_name = champion_obj[enemy.championId].champion_name
+                set_champion(index, enemy.championId, champion_name)
 
-            summoner_array[i].summoner_name = enemy_array[i].summonerName
-            let champion_name = champion_obj[enemy_array[i].championId].champion_name
-            set_champion(i, enemy_array[i].championId, champion_name)
+                let perk_array = enemy.perks.perkIds
+                check_perk(index, perk_array)
 
-            let perk_array = enemy_array[i].perks.perkIds
-            check_perk(i, perk_array)
+                set_spellD(index, spell_obj[enemy.spell1Id], enemy.spell1Id)
+                set_spellF(index, spell_obj[enemy.spell2Id], enemy.spell2Id)
 
-            set_spellD(i, spell_obj[enemy_array[i].spell1Id])
-            set_spellF(i, spell_obj[enemy_array[i].spell2Id])
+                index++
+            }
         }
 
         // 10초마다 level, spell 갱신

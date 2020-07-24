@@ -11,25 +11,25 @@ function set_champion(index, champion_id, champion_name) {
     }
 }
 
-// spell_obj : { 'spell_name' : 'SummonerBarrier', 'spell_cool' : 180 }
-function set_spellD(index, spell_obj, spell_id) {
-    let spell_name = spell_obj.spell_name
+// data_obj : { 'spell_name' : 'SummonerBarrier', 'spell_cool' : 180 }
+function set_spellD(index, data_obj, spell_id) {
+    let spell_name = data_obj.spell_name
     if (spell_name != undefined) {
         summoner_array[index].spellD_id = spell_id
         summoner_array[index].spellD_name = spell_name
-        summoner_array[index].spellD = spell_obj.spell_cool[summoner_array[index].level]
+        summoner_array[index].spellD = data_obj.spell_cool[summoner_array[index].level]
         document.getElementById('spellD-btn-' + summoner_array[index].index).innerHTML = `<img id="spellD-img-` + summoner_array[index].index + `" class="spell-img">`
         document.getElementById('spellD-img-' + summoner_array[index].index).src = './static/img/spell/' + spell_name + '.png'
     }
 }
 
-// spell_obj : { 'spell_name' : 'SummonerBarrier', 'spell_cool' : 180 }
-function set_spellF(index, spell_obj, spell_id) {
-    let spell_name = spell_obj.spell_name
+// data_obj : { 'spell_name' : 'SummonerBarrier', 'spell_cool' : 180 }
+function set_spellF(index, data_obj, spell_id) {
+    let spell_name = data_obj.spell_name
     if (spell_name != undefined) {
         summoner_array[index].spellF_id = spell_id
         summoner_array[index].spellF_name = spell_name
-        summoner_array[index].spellF = spell_obj.spell_cool[summoner_array[index].level]
+        summoner_array[index].spellF = data_obj.spell_cool[summoner_array[index].level]
         document.getElementById('spellF-btn-' + summoner_array[index].index).innerHTML = `<img id="spellF-img-` + summoner_array[index].index + `" class="spell-img">`
         document.getElementById('spellF-img-' + summoner_array[index].index).src = './static/img/spell/' + spell_name + '.png'
     }

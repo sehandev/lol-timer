@@ -147,4 +147,4 @@ function make_item_obj() {
 
 // make_champion_obj()
 // make_spell_obj()
-make_item_obj()
+// make_item_obj()
