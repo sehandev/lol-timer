@@ -30,6 +30,7 @@ function axios_item() {
 ipcRenderer.on('response-live', (event, data, is_ok) => {
     if (is_ok) {
         let player_list = data.allPlayers
+        set_kill_summoner_arr(data.events.Events)
         for (let i = 0; i < summoner_array.length; i++) {
             let summoner = player_list.find(element => element.summonerName == summoner_array[i].summoner_name)
             summoner_array[i].level = Number(summoner.level) - 1
@@ -42,7 +43,7 @@ ipcRenderer.on('response-live', (event, data, is_ok) => {
                 if (cooldown_item) {
                     summoner_array[i].fix_cool += Number(cooldown_item.cool)
                 }
-            });
+            })
             set_fix_cooldown(i)
 
             set_spellD(i, spell_obj[summoner_array[i].spellD_id], summoner_array[i].spellD_id)

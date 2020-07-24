@@ -73,7 +73,8 @@ function calculate_rune_cool(index) {
     let rune_map = summoner_array[index].rune_map
     summoner_array[index].rune_cool = 0
     if (rune_map['궁극의사냥꾼']) {
-        summoner_array[index].rune_cool += 5
+        summoner_array[index].rune_ult_cool += 5
+        summoner_array[index].rune_ult_cool += (summoner_array[i].kill_summoner_arr.length * 4)
     }
     if (rune_map['깨달음'] && summoner_array[index].level >= 10) {
         summoner_array[index].rune_cool += 10
@@ -133,6 +134,17 @@ function set_final_spell_cooldown(index) {
     document.getElementById('final-spell-cool-' + summoner_array[index].index).innerText = summoner_array[index].final_spell_cool
 }
 
+function set_kill_summoner_arr(event_arr) {
+    event_arr.filters(element => element.EventName == 'ChampionKill').forEach( element => {
+        if (summoner_array.includes(element.summoner_name == element.KillerName)) {
+            summoner_array.find(element.summoner_name == element.KillerName).kill_summoner_arr.push(element.VictimName)
+        }
+    })
+    for (let i = 0; i < 5; i++) {
+        summoner_array[i].kill_summoner_arr = [...new Set(summoner_array[i].kill_summoner_arr)]
+    }
+}
+
 
 function init() {
 
@@ -159,7 +171,9 @@ function init() {
                 '우주적통찰력': false,
                 '공격': false
             },
+            kill_summoner_arr: [], // 죽인 소환사 목록
             rune_cool: 0, // rune으로 인한 재사용대기시간
+            rune_ult_cool: 0, // rune으로 인한 궁극기 재사용대기시간
             fix_cool: 0, // 사용자 설정 재사용대기시간
             max_rune_cool: 40, // 최대 재사용대기시간
             final_ult_cool: 0, // 최종 궁극기 재사용대기시간

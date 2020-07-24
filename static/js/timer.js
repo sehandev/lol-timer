@@ -20,7 +20,7 @@ function timer_init() {
 
 function start_ult_timer(index) {
     summoner_array[index].ult = champion_obj[summoner_array[index].champion_id].ult_cool[summoner_array[index].level]
-    summoner_array[index].ult_time = parseInt(summoner_array[index].ult * (1 - summoner_array[index].final_ult_cool * 0.01))
+    summoner_array[index].ult_time = parseInt(summoner_array[index].ult * (1 - summoner_array[index].final_ult_cool * 0.01) * (1 - summoner_array[index].rune_ult_cool * 0.01))
     document.getElementById('champion-img-' + summoner_array[index].index).classList.add('ult-disabled')
     document.getElementById('ult-timer-' + summoner_array[index].index).innerText = summoner_array[index].ult_time
 }
