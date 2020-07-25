@@ -1,12 +1,11 @@
-import { ipcRenderer } from "electron"
-import * as spell from './spell'
+const { ipcRenderer } = require('electron')
 
 interface champion_object { [key: string]: { champion_name: string, ult_cool: number[] } }
 interface spell_object { [key: string]: { spell_name: string, spell_cool: number[] } }
 interface item_object { [key: string]: { item_name: string, item_description: string, item_tags: string[], cool: number } }
 
 let player_id: string
-export let champion_obj: champion_object  // '123' : { 'champion_name': 'Nunu', 'ult_cool': [ 110, 100, 90 ] }
+let champion_obj: champion_object  // '123' : { 'champion_name': 'Nunu', 'ult_cool': [ 110, 100, 90 ] }
 let spell_obj: spell_object // '456' : { 'spell_name': 'SummonerFlash', 'spell_cool': 300 }
 let item_obj: item_object // '789' : { 'item_name': '슈렐리아의 몽상', 'item_description': '... 재사용 대기시간 감소 +10% ...', 'item_tags': ['CooldownReduction'], 'cool': 10 }
 
@@ -33,24 +32,24 @@ function axios_item() {
 ipcRenderer.on('response-live', (event: any, data: any, is_ok: boolean) => {
     if (is_ok) {
         let player_list = data.allPlayers
-        spell.set_kill_summoner_arr(data.events.Events)
-        for (let i = 0; i < spell.summoner_array.length; i++) {
-            let summoner = player_list.find((element: { summonerName: string }) => element.summonerName == spell.summoner_array[i].summoner_name)
-            spell.summoner_array[i].level = Number(summoner.level) - 1
+        set_kill_summoner_arr(data.events.Events)
+        for (let i = 0; i < summoner_array.length; i++) {
+            let summoner = player_list.find((element: { summonerName: string }) => element.summonerName == summoner_array[i].summoner_name)
+            summoner_array[i].level = Number(summoner.level) - 1
 
-            spell.calculate_rune_cool(i)
+            calculate_rune_cool(i)
 
-            spell.summoner_array[i].fix_cool = 0
+            summoner_array[i].fix_cool = 0
             summoner.items.forEach((element: { itemID: number }) => {
                 let cooldown_item = item_obj[element.itemID]
                 if (cooldown_item) {
-                    spell.summoner_array[i].fix_cool += Number(cooldown_item.cool)
+                    summoner_array[i].fix_cool += Number(cooldown_item.cool)
                 }
             })
-            spell.set_fix_cooldown(i)
+            set_fix_cooldown(i)
 
-            spell.set_spellD(i, spell_obj[spell.summoner_array[i].spellD_id], spell.summoner_array[i].spellD_id)
-            spell.set_spellF(i, spell_obj[spell.summoner_array[i].spellF_id], spell.summoner_array[i].spellF_id)
+            set_spellD(i, spell_obj[summoner_array[i].spellD_id], summoner_array[i].spellD_id)
+            set_spellF(i, spell_obj[summoner_array[i].spellF_id], summoner_array[i].spellF_id)
         }
     } else {
         // error
@@ -68,15 +67,15 @@ ipcRenderer.on('response-match', (_: any, data: any, is_ok: boolean) => {
         for (let i = 0, index = 0; i < participants.length; i++) {
             if (participants[i].teamId != team_id) {
                 let enemy: { summonerName: string, championId: string, perks: { perkIds: number[] }, spell1Id: number, spell2Id: number } = participants[i]
-                spell.summoner_array[index].summoner_name = enemy.summonerName
+                summoner_array[index].summoner_name = enemy.summonerName
                 let champion_name = champion_obj[enemy.championId].champion_name
-                spell.set_champion(index, enemy.championId, champion_name)
+                set_champion(index, enemy.championId, champion_name)
 
                 let perk_array = enemy.perks.perkIds
-                spell.check_perk(index, perk_array)
+                check_perk(index, perk_array)
 
-                spell.set_spellD(index, spell_obj[enemy.spell1Id], enemy.spell1Id)
-                spell.set_spellF(index, spell_obj[enemy.spell2Id], enemy.spell2Id)
+                set_spellD(index, spell_obj[enemy.spell1Id], enemy.spell1Id)
+                set_spellF(index, spell_obj[enemy.spell2Id], enemy.spell2Id)
 
                 index++
             }

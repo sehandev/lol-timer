@@ -1,26 +1,22 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const path_1 = __importDefault(require("path"));
-const fs_1 = __importDefault(require("fs"));
+const path = require('path');
+const fs = require('fs');
 module.exports = { get_champion_obj, get_spell_obj, get_item_obj };
-const champion_json_path = path_1.default.join(__dirname, '../json/championFull');
-const spell_json_path = path_1.default.join(__dirname, '../json/summoner');
-const item_json_path = path_1.default.join(__dirname, '../json/item');
+const champion_json_path = path.join(__dirname, '../json/championFull');
+const spell_json_path = path.join(__dirname, '../json/summoner');
+const item_json_path = path.join(__dirname, '../json/item');
 function get_champion_obj() {
-    return JSON.parse(fs_1.default.readFileSync(champion_json_path + '_custom.json', 'utf8'));
+    return JSON.parse(fs.readFileSync(champion_json_path + '_custom.json', 'utf8'));
 }
 function get_spell_obj() {
-    return JSON.parse(fs_1.default.readFileSync(spell_json_path + '_custom.json', 'utf8'));
+    return JSON.parse(fs.readFileSync(spell_json_path + '_custom.json', 'utf8'));
 }
 function get_item_obj() {
-    return JSON.parse(fs_1.default.readFileSync(item_json_path + '_custom.json', 'utf8'));
+    return JSON.parse(fs.readFileSync(item_json_path + '_custom.json', 'utf8'));
 }
 function make_champion_obj() {
     let champion_obj = {};
-    let data = fs_1.default.readFileSync(champion_json_path + '.json', 'utf8');
+    let data = fs.readFileSync(champion_json_path + '.json', 'utf8');
     let data_obj = JSON.parse(data).data;
     Object.entries(data_obj).forEach(element => {
         let champion_name = element[0];
@@ -71,12 +67,12 @@ function make_champion_obj() {
         };
     });
     const champion_data = JSON.stringify(champion_obj);
-    fs_1.default.writeFileSync(champion_json_path + '_custom.json', champion_data, 'utf8');
+    fs.writeFileSync(champion_json_path + '_custom.json', champion_data, 'utf8');
     return champion_obj;
 }
 function make_spell_obj() {
     let spell_obj = {};
-    let data = fs_1.default.readFileSync(spell_json_path + '.json', 'utf8');
+    let data = fs.readFileSync(spell_json_path + '.json', 'utf8');
     let data_obj = JSON.parse(data).data;
     Object.entries(data_obj).forEach(element => {
         let spell_name = element[0];
@@ -97,20 +93,19 @@ function make_spell_obj() {
         };
     });
     const spell_data = JSON.stringify(spell_obj);
-    fs_1.default.writeFileSync(spell_json_path + '_custom.json', spell_data, 'utf8');
+    fs.writeFileSync(spell_json_path + '_custom.json', spell_data, 'utf8');
     return spell_obj;
 }
 function make_item_obj() {
     let item_obj = {};
-    let data = fs_1.default.readFileSync(item_json_path + '.json', 'utf8');
+    let data = fs.readFileSync(item_json_path + '.json', 'utf8');
     let data_obj = JSON.parse(data).data;
     Object.entries(data_obj).forEach(element => {
         let item_id = element[0];
         let item_name = element[1].name;
         let item_description = element[1].description;
-        let item_tags = element[1].tags;
         // 재사용대기시간 감소 효과가 있는 item
-        if (item_tags.includes('CooldownReduction')) {
+        if (item_description.includes('재사용 대기시간 감소 +') || item_description.includes('재사용 대기시간이 추가로 ')) {
             let cool1 = Number(item_description.split('재사용 대기시간 감소 +').pop().split('%')[0]);
             let cool2 = Number(item_description.split('재사용 대기시간이 추가로 ').pop().split('% 감소합니다')[0]);
             if (Number.isNaN(cool2)) {
@@ -119,15 +114,14 @@ function make_item_obj() {
             item_obj[item_id] = {
                 'item_name': item_name,
                 'item_description': item_description,
-                'item_tags': item_tags,
                 'cool': cool1 + cool2
             };
         }
     });
     const item_data = JSON.stringify(item_obj);
-    fs_1.default.writeFileSync(item_json_path + '_custom.json', item_data, 'utf8');
+    fs.writeFileSync(item_json_path + '_custom.json', item_data, 'utf8');
     return item_obj;
 }
 // make_champion_obj()
 // make_spell_obj()
-// make_item_obj()
+make_item_obj();

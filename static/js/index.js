@@ -1,13 +1,12 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const electron_1 = require("electron");
+const electron = require('electron');
 document.getElementById('reload-btn').onclick = () => {
     window.location.reload();
 };
 function axios_start() {
-    electron_1.ipcRenderer.send('request-start');
+    electron.ipcRenderer.send('request-start');
 }
-electron_1.ipcRenderer.on('response-start', (event, data, is_ok) => {
+electron.ipcRenderer.on('response-start', (event, data, is_ok) => {
     if (is_ok) {
         let player_name = data.activePlayer.summonerName;
         document.getElementById('active-player-btn').innerText = player_name;
@@ -19,7 +18,7 @@ electron_1.ipcRenderer.on('response-start', (event, data, is_ok) => {
         console.log(data);
     }
 });
-electron_1.ipcRenderer.on('response-summoner', (_, data, is_ok) => {
+electron.ipcRenderer.on('response-summoner', (_, data, is_ok) => {
     if (is_ok) {
         document.getElementById('active-player-btn').onclick = () => {
             window.location.href = 'spell.html?id=' + data.id;

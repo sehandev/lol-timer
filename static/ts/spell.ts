@@ -1,6 +1,4 @@
-import { champion_obj } from './ajax'
-
-export interface summoner {
+interface summoner {
     index: number,
     summoner_name: string, // 소환사명
     champion_id: string, // champion key
@@ -26,9 +24,9 @@ export interface summoner {
     final_spell_cool: number // 최종 spell 재사용대기시간
 }
 
-export let summoner_array: summoner[] = []
+let summoner_array: summoner[] = []
 
-export function set_champion(index: number, champion_id: string, champion_name: string) {
+function set_champion(index: number, champion_id: string, champion_name: string) {
     if (champion_name != undefined) {
         summoner_array[index].champion_id = champion_id
         summoner_array[index].champion_name = champion_name
@@ -38,7 +36,7 @@ export function set_champion(index: number, champion_id: string, champion_name: 
 }
 
 // data_obj : { 'spell_name' : 'SummonerBarrier', 'spell_cool' : [180, 180, ...] }
-export function set_spellD(index: number, data_obj: { spell_name: string; spell_cool: number[] }, spell_id: number) {
+function set_spellD(index: number, data_obj: { spell_name: string; spell_cool: number[] }, spell_id: number) {
     let spell_name = data_obj.spell_name
     if (spell_name != undefined) {
         summoner_array[index].spellD_id = spell_id
@@ -50,7 +48,7 @@ export function set_spellD(index: number, data_obj: { spell_name: string; spell_
 }
 
 // data_obj : { 'spell_name' : 'SummonerBarrier', 'spell_cool' : 180 }
-export function set_spellF(index: number, data_obj: { spell_name: string; spell_cool: number[] }, spell_id: number) {
+function set_spellF(index: number, data_obj: { spell_name: string; spell_cool: number[] }, spell_id: number) {
     let spell_name = data_obj.spell_name
     if (spell_name != undefined) {
         summoner_array[index].spellF_id = spell_id
@@ -69,7 +67,7 @@ let rune_array: { [key: number]: string } = {
 }
 
 // check_perk : 착용 중인 rune(perk) 중 재사용대기시간에 영향을 주는 5개 확인하기
-export function check_perk(index: number, perk_array: number[]) {
+function check_perk(index: number, perk_array: number[]) {
 
     Object.entries(rune_array).forEach(element => {
         // element : ['8106', '궁극의사냥꾼']
@@ -95,7 +93,7 @@ function check_disabled_rune(index: number) {
 }
 
 // calculate_rune_cool : rune_cool (rune으로 인한 재사용대기시간) 계산
-export function calculate_rune_cool(index: number) {
+function calculate_rune_cool(index: number) {
     let rune_map = summoner_array[index].rune_map
     summoner_array[index].rune_cool = 0
     if (rune_map['궁극의사냥꾼']) {
@@ -110,7 +108,7 @@ export function calculate_rune_cool(index: number) {
     }
     if (rune_map['우주적통찰력']) {
         summoner_array[index].rune_cool += 5
-        summoner_array[index].final_spell_cool += 5
+        summoner_array[index].final_spell_cool = 5
         set_final_spell_cooldown(index)
     }
     if (rune_map['공격']) {
@@ -127,11 +125,11 @@ function check_fix_cool_range(fix_cool: number) {
     } else if (fix_cool > 40) {
         return 40
     }
-    return fix_cool
+    return Math.round(fix_cool)
 }
 
 // set_fix_cooldown : fix-cool (사용자 설정 재사용대기시간) 반영
-export function set_fix_cooldown(index: number) {
+function set_fix_cooldown(index: number) {
     summoner_array[index].fix_cool = check_fix_cool_range(summoner_array[index].fix_cool)
     document.getElementById('fix-cool-' + String(summoner_array[index].index))!.innerText = String(summoner_array[index].fix_cool)
     set_final_ult_cooldown(index)
@@ -144,7 +142,7 @@ function check_final_ult_cool_range(ult_cool: number) {
     } else if (ult_cool > 45) {
         return 45
     }
-    return ult_cool
+    return Math.round(ult_cool)
 }
 
 // set_final_ult_cooldown : 궁극기 재사용대기시간 반영
@@ -160,7 +158,7 @@ function set_final_spell_cooldown(index: number) {
     document.getElementById('final-spell-cool-' + String(summoner_array[index].index))!.innerText = String(summoner_array[index].final_spell_cool)
 }
 
-export function set_kill_summoner_arr(event_arr: any[]) {
+function set_kill_summoner_arr(event_arr: any[]) {
     event_arr.filter((element: { EventName: string }) => element.EventName == 'ChampionKill').forEach((element: { summoner_name: string; KillerName: string; VictimName: string }) => {
         if (summoner_array.some((summoner: summoner) => summoner.summoner_name == element.KillerName)) {
             summoner_array.find((summoner: summoner) => summoner.summoner_name == element.KillerName)!.kill_summoner_arr.push(element.VictimName)

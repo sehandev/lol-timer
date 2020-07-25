@@ -1,6 +1,6 @@
 {
   "name": "zilean_timer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "League of Legends skill & spell timer",
   "main": "main.js",
   "scripts": {

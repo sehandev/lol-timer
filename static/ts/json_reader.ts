@@ -1,5 +1,5 @@
-import path from 'path'
-import fs from 'fs'
+const path = require('path')
+const fs = require('fs')
 
 module.exports = { get_champion_obj, get_spell_obj, get_item_obj }
 
@@ -111,7 +111,7 @@ function make_spell_obj() {
 }
 
 function make_item_obj() {
-    let item_obj: { [key: string]: { item_name: string, item_description: string, item_tags: string[], cool: number } } = {}
+    let item_obj: { [key: string]: { item_name: string, item_description: string, cool: number } } = {}
     let data = fs.readFileSync(item_json_path + '.json', 'utf8')
     let data_obj: JSON = JSON.parse(data).data
 
@@ -119,10 +119,9 @@ function make_item_obj() {
         let item_id = element[0]
         let item_name = element[1].name
         let item_description = element[1].description
-        let item_tags = element[1].tags
 
         // 재사용대기시간 감소 효과가 있는 item
-        if (item_tags.includes('CooldownReduction')) {
+        if (item_description.includes('재사용 대기시간 감소 +') || item_description.includes('재사용 대기시간이 추가로 ')) {
             let cool1 = Number(item_description.split('재사용 대기시간 감소 +').pop().split('%')[0])
             let cool2 = Number(item_description.split('재사용 대기시간이 추가로 ').pop().split('% 감소합니다')[0])
             if (Number.isNaN(cool2)) {
@@ -131,7 +130,6 @@ function make_item_obj() {
             item_obj[item_id] = {
                 'item_name': item_name,
                 'item_description': item_description,
-                'item_tags': item_tags,
                 'cool': cool1 + cool2
             }
         }
@@ -145,4 +143,4 @@ function make_item_obj() {
 
 // make_champion_obj()
 // make_spell_obj()
-// make_item_obj()
+make_item_obj()
