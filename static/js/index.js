@@ -1,40 +1,32 @@
-'use strict'
-
-const { ipcRenderer } = require('electron')
-
-let player_id
-
+"use strict";
+const electron = require('electron');
 document.getElementById('reload-btn').onclick = () => {
-    window.location.reload()
+    window.location.reload();
+};
+function axios_start() {
+    electron.ipcRenderer.send('request-start');
 }
-
-function axios_live() {
-    ipcRenderer.send('request-live')
-}
-
-ipcRenderer.on('response-live', (event, data, is_ok) => {
+electron.ipcRenderer.on('response-start', (event, data, is_ok) => {
     if (is_ok) {
-        let player_name = data.activePlayer.summonerName
-        document.getElementById('active-player-btn').innerText = player_name
-        document.getElementById('active-player-btn').classList.remove('disabled')
-        event.sender.send('request-summoner', player_name, true)
-    } else {
-        // error
-        console.log(data)
+        let player_name = data.activePlayer.summonerName;
+        document.getElementById('active-player-btn').innerText = player_name;
+        document.getElementById('active-player-btn').classList.remove('disabled');
+        event.sender.send('request-summoner', player_name, true);
     }
-})
-
-ipcRenderer.on('response-summoner', (_, data, is_ok) => {
+    else {
+        // error
+        console.log(data);
+    }
+});
+electron.ipcRenderer.on('response-summoner', (_, data, is_ok) => {
     if (is_ok) {
-        player_id = data.id
-
         document.getElementById('active-player-btn').onclick = () => {
-            window.location.href = 'spell.html?id=' + player_id
-        }
-    } else {
-        // error
-        console.log(data)
+            window.location.href = 'spell.html?id=' + data.id;
+        };
     }
-})
-
-axios_live()
+    else {
+        // error
+        console.log(data);
+    }
+});
+axios_start();

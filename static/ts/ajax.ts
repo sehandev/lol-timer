@@ -1,11 +1,9 @@
-'use strict'
-
 const { ipcRenderer } = require('electron')
 
-let player_id
-let champion_obj = {} // '123' : { 'champion_name': 'Nunu', 'ult_cool': [ 110, 100, 90 ] }
-let spell_obj = {} // '456' : { 'spell_name': 'SummonerFlash', 'spell_cool': 300 }
-let item_obj = {} // '789' : { 'item_name': '슈렐리아의 몽상', 'item_description': '... 재사용 대기시간 감소 +10% ...', 'item_tags': ['CooldownReduction'], 'cool': 10 }
+let player_id: string
+let champion_obj: { [key: string]: { champion_name: string, ult_cool: number[] } } // '123' : { 'champion_name': 'Nunu', 'ult_cool': [ 110, 100, 90 ] }
+let spell_obj: { [key: string]: { spell_name: string, spell_cool: number[] } } // '456' : { 'spell_name': 'SummonerFlash', 'spell_cool': 300 }
+let item_obj: { [key: string]: { item_name: string, item_description: string, item_tags: string[], cool: number } } // '789' : { 'item_name': '슈렐리아의 몽상', 'item_description': '... 재사용 대기시간 감소 +10% ...', 'item_tags': ['CooldownReduction'], 'cool': 10 }
 
 function axios_live() {
     ipcRenderer.send('request-live')
@@ -27,18 +25,18 @@ function axios_item() {
     ipcRenderer.send('request-item')
 }
 
-ipcRenderer.on('response-live', (event, data, is_ok) => {
+ipcRenderer.on('response-live', (event: any, data: any, is_ok: boolean) => {
     if (is_ok) {
         let player_list = data.allPlayers
         set_kill_summoner_arr(data.events.Events)
         for (let i = 0; i < summoner_array.length; i++) {
-            let summoner = player_list.find(element => element.summonerName == summoner_array[i].summoner_name)
+            let summoner = player_list.find((element: { summonerName: string }) => element.summonerName == summoner_array[i].summoner_name)
             summoner_array[i].level = Number(summoner.level) - 1
 
             calculate_rune_cool(i)
 
             summoner_array[i].fix_cool = 0
-            summoner.items.forEach(element => {
+            summoner.items.forEach((element: { itemID: number }) => {
                 let cooldown_item = item_obj[element.itemID]
                 if (cooldown_item) {
                     summoner_array[i].fix_cool += Number(cooldown_item.cool)
@@ -55,11 +53,11 @@ ipcRenderer.on('response-live', (event, data, is_ok) => {
     }
 })
 
-ipcRenderer.on('response-match', (_, data, is_ok) => {
+ipcRenderer.on('response-match', (_: any, data: any, is_ok: boolean) => {
     if (is_ok) {
         let participants = data.participants
-        let player = participants.find(element => element.summonerId == player_id)
-        document.getElementById('summoner-name').innerText = player.summonerName
+        let player = participants.find((element: { summonerId: string }) => element.summonerId == player_id)
+        document.getElementById('summoner-name')!.innerText = player.summonerName
         let team_id = player.teamId // 아군 team id
 
         for (let i = 0, index = 0; i < participants.length; i++) {
@@ -90,19 +88,19 @@ ipcRenderer.on('response-match', (_, data, is_ok) => {
     }
 })
 
-ipcRenderer.on('response-champion', (_, data) => {
+ipcRenderer.on('response-champion', (_: any, data: any) => {
     champion_obj = data
 })
 
-ipcRenderer.on('response-spell', (_, data) => {
+ipcRenderer.on('response-spell', (_: any, data: any) => {
     spell_obj = data
 })
 
-ipcRenderer.on('response-item', (_, data) => {
+ipcRenderer.on('response-item', (_: any, data: any) => {
     item_obj = data
 })
 
-function init() {
+function ajax_init() {
     axios_champion()
     axios_spell()
     axios_item()
@@ -111,4 +109,4 @@ function init() {
 
 }
 
-init()
+ajax_init()

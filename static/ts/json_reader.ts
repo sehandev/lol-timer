@@ -22,9 +22,9 @@ function get_item_obj() {
 }
 
 function make_champion_obj() {
-    let champion_obj = {}
+    let champion_obj: { [key: string]: { champion_name: string, ult_cool: number[] } } = {}
     let data = fs.readFileSync(champion_json_path + '.json', 'utf8')
-    let data_obj = JSON.parse(data).data
+    let data_obj: JSON = JSON.parse(data).data
 
     Object.entries(data_obj).forEach(element => {
         let champion_name = element[0]
@@ -82,9 +82,9 @@ function make_champion_obj() {
 }
 
 function make_spell_obj() {
-    let spell_obj = {}
+    let spell_obj: { [key: string]: { spell_name: string, spell_cool: number } } = {}
     let data = fs.readFileSync(spell_json_path + '.json', 'utf8')
-    let data_obj = JSON.parse(data).data
+    let data_obj: JSON = JSON.parse(data).data
 
     Object.entries(data_obj).forEach(element => {
         let spell_name = element[0]
@@ -113,9 +113,9 @@ function make_spell_obj() {
 }
 
 function make_item_obj() {
-    let item_obj = {}
+    let item_obj: { [key: string]: { item_name: string, item_description: string, item_tags: string[], cool: number } } = {}
     let data = fs.readFileSync(item_json_path + '.json', 'utf8')
-    let data_obj = JSON.parse(data).data
+    let data_obj: JSON = JSON.parse(data).data
 
     Object.entries(data_obj).forEach(element => {
         let item_id = element[0]

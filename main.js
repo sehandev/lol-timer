@@ -80,6 +80,20 @@ ipcMain.on('request-item', (event) => {
 })
 
 // 실행 중인 LOL Client의 live data 요청
+ipcMain.on('request-start', (event) => {
+
+  let start_url = 'https://127.0.0.1:2999/liveclientdata/allgamedata'
+
+  axios.get(start_url, { httpsAgent: agent }).then(response => {
+    event.sender.send('response-start', response.data, true)
+  }).catch(err => {
+    console.log(err)
+    event.sender.send('response-start', 'ERROR start : 게임을 실행하고 버튼을 다시 눌러주세요.', false)
+  })
+
+})
+
+// 실행 중인 LOL Client의 live data 요청
 ipcMain.on('request-live', (event) => {
 
   let live_url = 'https://127.0.0.1:2999/liveclientdata/allgamedata'
