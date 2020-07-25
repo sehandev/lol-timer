@@ -1,7 +1,5 @@
-'use strict'
-
-const path = require('path')
-const fs = require('fs')
+import path from 'path'
+import fs from 'fs'
 
 module.exports = { get_champion_obj, get_spell_obj, get_item_obj }
 

@@ -1,7 +1,9 @@
-type summoner = {
+import { champion_obj } from './ajax'
+
+export interface summoner {
     index: number,
     summoner_name: string, // 소환사명
-    champion_id: number, // champion key
+    champion_id: string, // champion key
     champion_name: string, // champion 이름
     level: number,
     ult: number, // 궁극기 재사용대기시간
@@ -24,9 +26,9 @@ type summoner = {
     final_spell_cool: number // 최종 spell 재사용대기시간
 }
 
-let summoner_array: summoner[] = []
+export let summoner_array: summoner[] = []
 
-function set_champion(index: number, champion_id: number, champion_name: string) {
+export function set_champion(index: number, champion_id: string, champion_name: string) {
     if (champion_name != undefined) {
         summoner_array[index].champion_id = champion_id
         summoner_array[index].champion_name = champion_name
@@ -36,7 +38,7 @@ function set_champion(index: number, champion_id: number, champion_name: string)
 }
 
 // data_obj : { 'spell_name' : 'SummonerBarrier', 'spell_cool' : [180, 180, ...] }
-function set_spellD(index: number, data_obj: { spell_name: string; spell_cool: number[] }, spell_id: number) {
+export function set_spellD(index: number, data_obj: { spell_name: string; spell_cool: number[] }, spell_id: number) {
     let spell_name = data_obj.spell_name
     if (spell_name != undefined) {
         summoner_array[index].spellD_id = spell_id
@@ -48,7 +50,7 @@ function set_spellD(index: number, data_obj: { spell_name: string; spell_cool: n
 }
 
 // data_obj : { 'spell_name' : 'SummonerBarrier', 'spell_cool' : 180 }
-function set_spellF(index: number, data_obj: { spell_name: string; spell_cool: number[] }, spell_id: number) {
+export function set_spellF(index: number, data_obj: { spell_name: string; spell_cool: number[] }, spell_id: number) {
     let spell_name = data_obj.spell_name
     if (spell_name != undefined) {
         summoner_array[index].spellF_id = spell_id
@@ -67,7 +69,7 @@ let rune_array: { [key: number]: string } = {
 }
 
 // check_perk : 착용 중인 rune(perk) 중 재사용대기시간에 영향을 주는 5개 확인하기
-function check_perk(index: number, perk_array: number[]) {
+export function check_perk(index: number, perk_array: number[]) {
 
     Object.entries(rune_array).forEach(element => {
         // element : ['8106', '궁극의사냥꾼']
@@ -93,7 +95,7 @@ function check_disabled_rune(index: number) {
 }
 
 // calculate_rune_cool : rune_cool (rune으로 인한 재사용대기시간) 계산
-function calculate_rune_cool(index: number) {
+export function calculate_rune_cool(index: number) {
     let rune_map = summoner_array[index].rune_map
     summoner_array[index].rune_cool = 0
     if (rune_map['궁극의사냥꾼']) {
@@ -129,7 +131,7 @@ function check_fix_cool_range(fix_cool: number) {
 }
 
 // set_fix_cooldown : fix-cool (사용자 설정 재사용대기시간) 반영
-function set_fix_cooldown(index: number) {
+export function set_fix_cooldown(index: number) {
     summoner_array[index].fix_cool = check_fix_cool_range(summoner_array[index].fix_cool)
     document.getElementById('fix-cool-' + String(summoner_array[index].index))!.innerText = String(summoner_array[index].fix_cool)
     set_final_ult_cooldown(index)
@@ -158,7 +160,7 @@ function set_final_spell_cooldown(index: number) {
     document.getElementById('final-spell-cool-' + String(summoner_array[index].index))!.innerText = String(summoner_array[index].final_spell_cool)
 }
 
-function set_kill_summoner_arr(event_arr: any[]) {
+export function set_kill_summoner_arr(event_arr: any[]) {
     event_arr.filter((element: { EventName: string }) => element.EventName == 'ChampionKill').forEach((element: { summoner_name: string; KillerName: string; VictimName: string }) => {
         if (summoner_array.some((summoner: summoner) => summoner.summoner_name == element.KillerName)) {
             summoner_array.find((summoner: summoner) => summoner.summoner_name == element.KillerName)!.kill_summoner_arr.push(element.VictimName)
@@ -176,7 +178,7 @@ function init() {
         let summoner: summoner = {
             index: i + 1,
             summoner_name: "", // 소환사명
-            champion_id: -1, // champion key
+            champion_id: "", // champion key
             champion_name: "", // champion 이름
             level: 0,
             ult: 5, // 궁극기 재사용대기시간
