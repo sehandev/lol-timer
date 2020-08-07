@@ -159,13 +159,16 @@ function set_final_spell_cooldown(index: number) {
 }
 
 function set_kill_summoner_arr(event_arr: any[]) {
-    event_arr.filter((element: { EventName: string }) => element.EventName == 'ChampionKill').forEach((element: { summoner_name: string; KillerName: string; VictimName: string }) => {
-        if (summoner_array.some((summoner: summoner) => summoner.summoner_name == element.KillerName)) {
-            summoner_array.find((summoner: summoner) => summoner.summoner_name == element.KillerName)!.kill_summoner_arr.push(element.VictimName)
+    event_arr.filter( (element: { EventName: string }) => element.EventName == 'ChampionKill')
+        .forEach( (element: { summoner_name: string; KillerName: string; VictimName: string }) => {
+            if (summoner_array.some((summoner: summoner) => summoner.summoner_name == element.KillerName)) {
+                summoner_array.find((summoner: summoner) => summoner.summoner_name == element.KillerName)!.kill_summoner_arr.push(element.VictimName)
+            }
         }
-    })
+    )
     for (let i = 0; i < 5; i++) {
-        summoner_array[i].kill_summoner_arr = [...new Set(summoner_array[i].kill_summoner_arr)]
+        summoner_array[i].kill_summoner_arr = Array.from(new Set(summoner_array[i].kill_summoner_arr));
+        console.log(summoner_array[i].kill_summoner_arr);
     }
 }
 
