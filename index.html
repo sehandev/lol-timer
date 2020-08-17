@@ -1,43 +1,54 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <meta charset="UTF-8" />
+        <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
+        <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
 
-<head>
-  <meta charset="UTF-8">
-  <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-  <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+        <title>Zilean Timer</title>
 
-  <title>Zilean Timer</title>
+        <!-- external css -->
+        <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="node_modules\@fortawesome\fontawesome-free\css\all.min.css" />
 
-  <!-- external css -->
-  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="node_modules\@fortawesome\fontawesome-free\css\all.min.css">
+        <!-- custom css -->
+        <link rel="stylesheet" href="./static/css/common.css" />
+        <link rel="stylesheet" href="./static/css/index.css" />
+    </head>
 
-  <!-- custom css -->
-  <link rel="stylesheet" href="./static/css/common.css">
-  <link rel="stylesheet" href="./static/css/index.css">
-</head>
+    <body class="user-select-none">
+        <div class="container">
+            <div id="drag-top" class="py-4 overflow-hidden">
+                <h1 id="index-title" class="float-left">질리언 타이머</h1>
+                <button type="button" id="close-btn" class="btn btn-secondary float-right"><i class="fas fa-times"></i></button>
+            </div>
 
-<body class="user-select-none">
-  <div class="container">
+            <div id="reload-row" class="row my-auto">
+                <button id="reload-btn" class="btn btn-danger btn-lg m-auto h-50">새로고침</button>
+            </div>
 
-    <div id="drag-top" class="py-4 overflow-hidden">
-      <h1 id="index-title" class="float-left">질리언 타이머</h1>
-      <button type="button" id="close-btn" class="btn btn-secondary float-right"><i class="fas fa-times"></i></button>
-    </div>
+            <div class="row my-2">
+                <button type="button" id="active-player-btn" class="btn btn-outline-danger btn-lg btn-block disabled m-auto w-75">
+                    게임을 실행하고 새로고침을 눌러주세요.
+                </button>
+            </div>
 
-    <div id="reload-row" class="row my-auto">
-      <button id="reload-btn" class="btn btn-danger btn-lg m-auto h-50">새로고침</button>
-    </div>
+            <div class="row mt-5">
+                <button type="button" id="opgg-btn" class="btn btn-outline-info btn-lg btn-block m-auto w-75">
+                    OP.GG
+                </button>
+            </div>
 
-    <div class="row my-auto">
-      <button type="button" id="active-player-btn" class="btn btn-outline-danger btn-lg btn-block disabled m-auto w-75">게임을 실행하고 새로고침을 눌러주세요.</button>
-    </div>
-  </div>
+            <div class="row mt-3">
+                <button type="button" id="porogg-btn" class="btn btn-outline-info btn-lg btn-block m-auto w-75">
+                    PORO.GG
+                </button>
+            </div>
+        </div>
 
-  <!-- You can also require other files to run in this process -->
-  <script src="./static/js/renderer.js"></script>
-  <script src="./static/js/index.js"></script>
-</body>
-
+        <!-- You can also require other files to run in this process -->
+        <script src="./static/js/renderer.js"></script>
+        <script src="./static/js/index.js"></script>
+    </body>
 </html>

@@ -1,7 +1,16 @@
 const electron = require("electron")
+const opn = require("opn")
 
 document.getElementById("reload-btn")!.onclick = () => {
     window.location.reload()
+}
+
+document.getElementById("opgg-btn")!.onclick = () => {
+    opn("https://www.op.gg/")
+}
+
+document.getElementById("porogg-btn")!.onclick = () => {
+    opn("https://poro.gg/")
 }
 
 function axios_start() {

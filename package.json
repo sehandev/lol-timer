@@ -1,44 +1,45 @@
 {
-  "name": "zilean_timer",
-  "version": "1.0.2",
-  "description": "League of Legends skill & spell timer",
-  "main": "main.js",
-  "scripts": {
-    "compile": "tsc",
-    "start": "npm run compile && electron .",
-    "build": "npm run compile && electron-builder --win --x64"
-  },
-  "repository": "https://github.com/sehandev/lol-timer",
-  "author": "sehandev",
-  "devDependencies": {
-    "electron": "^9.2.0",
-    "electron-builder": "^22.8.0",
-    "typescript": "^3.9.7"
-  },
-  "files": [
-    "*.html",
-    "static",
-    "node_modules/@fortawesome/",
-    "node_modules/bootstrap/",
-    "node_modules/popper.js/"
-  ],
-  "build": {
-    "productName": "Zilean Timer",
-    "appId": "com.sehandev.zileanTimer",
-    "asar": true,
-    "win": {
-      "target": [
-        "portable"
-      ],
-      "icon": "static/img/icon.png"
+    "name": "zilean_timer",
+    "version": "1.0.2",
+    "description": "League of Legends skill & spell timer",
+    "main": "main.js",
+    "scripts": {
+        "compile": "tsc",
+        "start": "npm run compile && electron .",
+        "build": "npm run compile && electron-builder --win --x64"
+    },
+    "repository": "https://github.com/sehandev/lol-timer",
+    "author": "sehandev",
+    "devDependencies": {
+        "electron": "^9.2.0",
+        "electron-builder": "^22.8.0",
+        "typescript": "^3.9.7"
+    },
+    "files": [
+        "*.html",
+        "static",
+        "node_modules/@fortawesome/",
+        "node_modules/bootstrap/",
+        "node_modules/popper.js/"
+    ],
+    "build": {
+        "productName": "Zilean Timer",
+        "appId": "com.sehandev.zileanTimer",
+        "asar": true,
+        "win": {
+            "target": [
+                "portable"
+            ],
+            "icon": "static/img/icon.png"
+        }
+    },
+    "dependencies": {
+        "@fortawesome/fontawesome-free": "^5.14.0",
+        "axios": "^0.19.2",
+        "bootstrap": "^4.5.0",
+        "https": "^1.0.0",
+        "jquery": "^3.5.1",
+        "opn": "^6.0.0",
+        "popper.js": "^1.16.1"
     }
-  },
-  "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.14.0",
-    "axios": "^0.19.2",
-    "bootstrap": "^4.5.0",
-    "https": "^1.0.0",
-    "jquery": "^3.5.1",
-    "popper.js": "^1.16.1"
-  }
 }
