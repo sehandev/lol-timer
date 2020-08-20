@@ -76,6 +76,8 @@ function make_champion_obj() {
     const champion_data = JSON.stringify(champion_obj)
     fs.writeFileSync(champion_json_path + "_custom.json", champion_data, "utf8")
 
+    console.log("SUCCESS : make champion obj")
+
     return champion_obj
 }
 
@@ -106,6 +108,8 @@ function make_spell_obj() {
 
     const spell_data = JSON.stringify(spell_obj)
     fs.writeFileSync(spell_json_path + "_custom.json", spell_data, "utf8")
+
+    console.log("SUCCESS : make spell obj")
 
     return spell_obj
 }
@@ -138,9 +142,11 @@ function make_item_obj() {
     const item_data = JSON.stringify(item_obj)
     fs.writeFileSync(item_json_path + "_custom.json", item_data, "utf8")
 
+    console.log("SUCCESS : make item obj")
+
     return item_obj
 }
 
 // make_champion_obj()
 // make_spell_obj()
-make_item_obj()
+// make_item_obj()
