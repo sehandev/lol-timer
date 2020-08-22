@@ -111,11 +111,11 @@ ipcRenderer.on("response-match", (_: any, data: any, is_ok: boolean) => {
       }
     }
 
-    // 10초마다 level, spell 갱신
+    // 1초마다 level, spell 갱신
     axios_live();
     setInterval(() => {
       axios_live();
-    }, 10000);
+    }, 1000);
   } else {
     // error
     console.log(data);

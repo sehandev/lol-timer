@@ -13,7 +13,7 @@ function timer_init() {
 
     setInterval(() => {
         tick_update()
-    }, 1000)
+    }, 100)
 }
 
 function start_ult_timer(summoner: any) {
