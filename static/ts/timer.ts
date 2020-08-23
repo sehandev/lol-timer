@@ -13,7 +13,7 @@ function timer_init() {
 
     setInterval(() => {
         tick_update()
-    }, 100)
+    }, 1000)
 }
 
 function start_ult_timer(summoner: any) {
@@ -38,20 +38,20 @@ function start_spellF_timer(summoner: any) {
 function tick_update() {
     for (let index = 0; index < 5; index++) {
         if (summoner_array[index].ult_time > 0) {
-            summoner_array[index].ult_time -= 0.1
+            summoner_array[index].ult_time -= 1
             document.getElementById("ult-timer-" + summoner_array[index].index)!.innerText = String(summoner_array[index].ult_time)
         } else {
             document.getElementById("champion-img-" + summoner_array[index].index)!.classList.remove("ult-disabled")
             document.getElementById("ult-timer-" + summoner_array[index].index)!.innerText = String("")
         }
         if (summoner_array[index].spellD_time > 0) {
-            summoner_array[index].spellD_time -= 0.1
+            summoner_array[index].spellD_time -= 1
             document.getElementById("spellD-timer-" + summoner_array[index].index)!.innerText = String(summoner_array[index].spellD_time)
         } else {
             document.getElementById("spellD-img-" + summoner_array[index].index)!.classList.remove("spell-disabled")
         }
         if (summoner_array[index].spellF_time > 0) {
-            summoner_array[index].spellF_time -= 0.1
+            summoner_array[index].spellF_time -= 1
             document.getElementById("spellF-timer-" + summoner_array[index].index)!.innerText = String(summoner_array[index].spellF_time)
         } else {
             document.getElementById("spellF-img-" + summoner_array[index].index)!.classList.remove("spell-disabled")
