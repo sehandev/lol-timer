@@ -96,6 +96,9 @@ function make_spell_obj() {
             for (let i = 0; i < 18; i++) {
                 spell_cool.push(element[1].cooldown[0])
             }
+        } else if (spell_name == "SummonerTeleport") {
+            // Teleport는 json에 cooldown이 포함되어 있지 않아서 직접 입력
+            spell_cool = [420, 409, 399, 388, 378, 367, 356, 346, 335, 325, 314, 304, 293, 282, 272, 261, 251, 240]
         } else {
             spell_cool = element[1].cooldown
         }
