@@ -92,13 +92,13 @@ function make_spell_obj() {
 
         // level에 따라 변동이 있는 재사용대기시간을 체크하기 위해 18개로 복제
         let spell_cool = []
-        if (element[1].cooldown.length == 1) {
+        if (spell_name == "SummonerTeleport") {
+            // Teleport는 json에 cooldown이 포함되어 있지 않아서 직접 입력
+            spell_cool = [420, 409, 399, 388, 378, 367, 356, 346, 335, 325, 314, 304, 293, 282, 272, 261, 251, 240]
+        } else if (element[1].cooldown.length == 1) {
             for (let i = 0; i < 18; i++) {
                 spell_cool.push(element[1].cooldown[0])
             }
-        } else if (spell_name == "SummonerTeleport") {
-            // Teleport는 json에 cooldown이 포함되어 있지 않아서 직접 입력
-            spell_cool = [420, 409, 399, 388, 378, 367, 356, 346, 335, 325, 314, 304, 293, 282, 272, 261, 251, 240]
         } else {
             spell_cool = element[1].cooldown
         }
