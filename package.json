@@ -11,7 +11,7 @@
     "repository": "https://github.com/sehandev/lol-timer",
     "author": "sehandev",
     "devDependencies": {
-        "electron": "^9.2.0",
+        "electron": "^11.5.0",
         "electron-builder": "^22.8.0",
         "typescript": "^3.9.7"
     },
